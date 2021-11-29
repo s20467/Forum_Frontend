@@ -1,1 +1,49 @@
-/* You can add global styles to this file, and also import other style files */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+body{
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
+    color: var(--grey-shade-1);
+    background-color: var(--grey-tint-1);
+
+
+    --main: #059669;
+    --main-tint-1: #ECFDF5;
+    --main-tint-2: #D1FAE5;
+    --main-tint-3: #A7F3D0;
+    --main-shade-3: #047857;
+    --main-shade-2: #065F46;
+    --main-shade-1: #064E3B;
+
+    --grey-tint-1: #F9FAFB;
+    --grey-tint-2: #F3F4F6;
+    --grey-tint-3: #E5E7EB;
+    --grey-shade-4: #9CA3AF;
+    --grey-shade-3: #6B7280;
+    --grey-shade-2: #1F2937;
+    --grey-shade-1: #111827;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+.transparent-button{
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+}
