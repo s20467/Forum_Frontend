@@ -1,0 +1,29 @@
+.close-icon{
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+}
+
+.close-icon *{
+    stroke: var(--grey-shade-3);
+}
+
+.close-icon .icon-dot-part{
+    fill: var(--grey-shade-3);
+}
+
+button:hover .close-icon *{
+    stroke: #FBBF24;
+}
+
+button:hover .close-icon .icon-dot-part{
+    fill: #FBBF24;
+}
+
+span{
+    margin-left: 4px;
+}
+
+span:empty{
+    display: none;
+}

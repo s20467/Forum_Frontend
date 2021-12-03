@@ -1,0 +1,34 @@
+.delete-icon{
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    margin-bottom: -4px;
+    /* position: relative;
+    top: 5px; */
+}
+
+.delete-icon *{
+    stroke: var(--grey-shade-3);
+}
+
+button:hover .delete-icon *{
+    stroke: #EF4444;
+}
+
+button{
+    color: var(--grey-shade-3);
+    font-family: inherit;
+    font-size: inherit;
+}
+
+button:hover{
+    color: #EF4444
+}
+
+span{
+    margin-left: 4px;
+}
+
+span:empty{
+    display: none;
+}

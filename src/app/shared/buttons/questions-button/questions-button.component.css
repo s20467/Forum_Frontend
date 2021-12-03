@@ -1,0 +1,40 @@
+.questions-icon{
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    margin-bottom: -4px;
+}
+
+.questions-icon *{
+    stroke: var(--grey-shade-3);
+}
+
+.questions-icon .icon-dot-part{
+    fill: var(--grey-shade-3);
+}
+
+button:hover .questions-icon *{
+    stroke: var(--main);
+}
+
+button:hover .questions-icon .icon-dot-part{
+    fill: var(--main);
+}
+
+button{
+    color: var(--grey-shade-3);
+    font-family: inherit;
+    font-size: inherit;
+}
+
+button:hover{
+    color: var(--main);
+}
+
+span{
+    margin-left: 4px;
+}
+
+span:empty{
+    display: none;
+}

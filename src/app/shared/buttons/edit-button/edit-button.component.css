@@ -1,0 +1,32 @@
+.edit-icon{
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    margin-bottom: -4px;
+}
+
+.edit-icon *{
+    stroke: var(--grey-shade-3);
+}
+
+button:hover .edit-icon *{
+    stroke: #FBBF24;
+}
+
+button{
+    color: var(--grey-shade-3);
+    font-family: inherit;
+    font-size: inherit;
+}
+
+button:hover{
+    color: #FBBF24;
+}
+
+span{
+    margin-left: 4px;
+}
+
+span:empty{
+    display: none;
+}

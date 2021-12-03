@@ -1,0 +1,44 @@
+
+.add-answer-box{
+    float: right;
+    width: fit-content;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    color: var(--main-shade-3);
+    border-radius: 10px;
+}
+
+.add-answer-box:hover{
+    background-color: var(--main-shade-3);
+    color: var(--main-tint-1);
+}
+
+.add-answer-box .shorter-content{
+    display: none;
+}
+
+.add-answer-icon{
+    width: 1.5rem;
+    height: 1.5rem;
+    position: relative;
+    top: 5px;
+    margin-right: 5px;
+    margin-top: -10px;
+}
+
+.add-answer-icon *{
+    stroke: var(--main-shade-3);
+}
+
+.add-answer-box:hover *{
+    stroke: var(--main-tint-1);
+}
+
+span{
+    margin-left: 4px;
+}
+
+span:empty{
+    display: none;
+}
