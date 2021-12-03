@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +29,7 @@ import { UserListItemComponent } from './users/user-list/user-list-item/user-lis
 import { PasswordButtonComponent } from './shared/buttons/password-button/password-button.component';
 import { QuestionsButtonComponent } from './shared/buttons/questions-button/questions-button.component';
 import { UserChangePasswordComponent } from './users/user-change-password/user-change-password.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,10 @@ import { UserChangePasswordComponent } from './users/user-change-password/user-c
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
