@@ -1,0 +1,91 @@
+.container{
+    margin-left: auto;
+    margin-right: auto;
+    width: 700px;
+    max-width: 100%;
+    margin-top: 10%;
+}
+.form-group{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.form-group:last-of-type{
+    margin-bottom: 0;
+}
+
+label{
+    font-size: 1.2rem;
+}
+
+.link{
+    text-decoration: underline;
+    color: var(--main-shade-2);
+}
+
+.form-header{
+    font-size: 2.7rem;
+    padding-bottom: 2%;
+    margin-bottom: 5%;
+    border-bottom: 2px solid var(--main);
+    letter-spacing: -2px;
+}
+
+#username-input, #password-input, #password-repeat-input{
+    width: 100%;
+    font-size: 0.9rem;
+    margin-top: 0.9em;
+    border: none;
+    outline: none;
+    background-color: var(--grey-tint-3);
+    padding: 10px;
+    border-radius: 10px;
+    font-family: inherit;
+    color: inherit;
+}
+
+form{
+    width: 100%;
+}
+
+.form-label:not(:first-child){
+    font-size: 1.2rem;
+    margin-top: 3rem;
+}
+
+button[type="submit"]{
+    width: 100%;
+    background-color: var(--main-shade-1);
+    color: var(--main-tint-1);
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.3rem;
+    margin-top: 3rem;
+}
+
+form button:hover{
+    background-color: var(--main-shade-2);
+    cursor: pointer;
+}
+
+textarea.ng-invalid.ng-touched, input.ng-invalid.ng-touched{
+    border: 3px solid red;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.invalid-form-message{
+    color: red;
+}
+
+form:invalid .invalid-form-message{
+    display: inline-block;
+}
+
+
+
+@media(max-width: 700px){
+    .form-header{
+        font-size: 2.2rem;
+    }
+}

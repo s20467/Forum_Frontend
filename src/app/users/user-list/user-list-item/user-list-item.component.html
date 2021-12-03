@@ -1,0 +1,24 @@
+<div *ngIf="!isEditMode" class="user-component">
+    <span class="username">{{ user.username }}</span>
+    <app-questions-button>Wyświetl pytania</app-questions-button>
+    <app-edit-button (click)="toggleOnEditMode()">Edytuj nazwę</app-edit-button>
+    <app-password-button>Edytuj hasło</app-password-button>
+    <app-delete-button>Usuń</app-delete-button>
+</div>
+<div *ngIf="isEditMode" class="user-component">
+    <form class="edit-username-form">
+        <input id="username-input" type="text" name="username" value="Użytkownik1" required autofocus>
+        <button class="transparent-button confirm-username-button" type="submit">
+            <svg class="confirm-form-icon" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">
+                <polyline points="216 72.005 104 184 48 128.005" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
+            </svg>
+        </button>
+        <button class="transparent-button" type="button">
+            <svg class="reject-form-icon" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">
+                <line x1="200" y1="56" x2="56" y2="200" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+                <line x1="200" y1="200" x2="56" y2="56" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+            </svg>
+        </button>
+    </form>
+</div>
+

@@ -1,0 +1,76 @@
+.user-component .username{
+    font-size: 1.5rem;
+}
+
+.edit-username, .edit-password, .delete-user, .show-user-questions{
+    color: var(--grey-shade-3);
+}
+
+.user-component{
+    color: var(--grey-shade-1);
+    padding: 24px 36px;
+    margin-bottom: 24px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.07);
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.edit-username-form{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.edit-username-form input{
+    width: 100%;
+    font-size: 0.9rem;
+    border: none;
+    outline: none;
+    background-color: var(--grey-tint-3);
+    padding: 10px;
+    border-radius: 10px;
+    font-family: inherit;
+    color: inherit;
+}
+
+.confirm-form-icon, .reject-form-icon{
+    height: 2rem;
+    width: 2rem;
+    border-radius: 10px;
+}
+
+.confirm-form-icon{
+    background-color: var(--main-tint-2);
+}
+
+.reject-form-icon{
+    background-color: #FEE2E2;
+}
+
+.confirm-form-icon:hover{
+    background-color: var(--main-tint-4);
+}
+
+.reject-form-icon:hover{
+    background-color: #FCA5A5;
+}
+
+
+
+
+@media(max-width: 900px){
+    .user-component{
+        flex-direction: column;
+        align-self: flex-start;
+        gap: 10px;
+    }
+
+    .user-component .username{
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+    }
+}
