@@ -1,0 +1,142 @@
+.answer-component{
+    position: relative;
+    padding: 36px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.upvote-icon, .downvote-icon{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.3em;
+}
+
+.upvote-icon, .downvote-icon{
+    position: relative;
+    left: 2px;
+}
+
+.upvote-icon, .downvote-icon{
+    background-color: var(--main-tint-1);
+    border-radius: 100px;
+}
+
+.upvote-icon:hover, .downvote-icon:hover{
+    background-color: var(--main-shade-3);
+    border-radius: 100px;
+}
+
+.upvote-icon:hover *, .downvote-icon:hover *{
+    stroke: var(--main-tint-1)
+}
+
+.upvote-icon *, .downvote-icon *{
+    stroke: var(--main-shade-3);
+}
+
+.upvote-icon *, .downvote-icon *{
+    stroke-width: 20px;
+}
+
+.voting-component{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 0.2em;
+    padding-right: 20px;
+    border-radius: 5px;
+    color: var(--main-shade-3);
+}
+
+.author, .date{
+    color: var(--grey-shade-3);
+    display: inline-block;
+}
+
+.title{
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: -1.1px;
+    margin-bottom: 16px;
+    word-break: break-word;
+}
+
+.content{
+    color: var(--grey-shade-2);
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+    word-break: break-word;
+}
+
+.author-date-component{
+    border-top: 1px solid var(--grey-tint-3);
+    padding-top: 20px;
+}
+
+.author{
+    margin-left: 5px;
+}
+
+.date-icon{
+    float: right;
+}
+
+.date-icon, .author-icon{
+    width: 1rem;
+    height: 1rem;
+    position: relative;
+    top: 2px;
+}
+
+.date{
+    float: right;
+    margin-right: 32px;
+    margin-left: 5px;
+}
+
+.date-icon *, .author-icon *{
+    stroke: var(--grey-shade-3);
+}
+
+.more-options-box{
+    position: absolute;
+    top: 0px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+
+
+@media(max-width: 900px){
+    main.grid{
+        grid-template-columns: 1fr;
+    }
+
+    .content-menu{
+        margin-top: 20px;
+    }
+
+    .content-menu li{
+        display: inline-block;
+    }
+
+    .votes-answers-numbers{
+        display: none;
+    }
+}
+
+@media(max-width: 700px){
+    .question-details-component, .answer-component{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .voting-component{
+        padding-right: 0px;
+    }
+}

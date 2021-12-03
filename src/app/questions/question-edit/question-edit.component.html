@@ -1,0 +1,33 @@
+<div class="form-container">
+    <h2 class="form-header">Utwórz Pytanie - Admin</h2>
+    <form>
+        <div class="form-group">
+            <label class="form-label" for="title-input">Tytuł Pytania</label>
+            <textarea name="title" id="title-input" required minlength="10" placeholder="Tutaj wpisz skrócony opis pytania" autofocus></textarea>
+            <p class="invalid-input-message">Niewłaściwy tytuł pytania</p>
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="content-input">Treść Pytania</label>
+            <textarea name="content" id="content-input" placeholder="Tutaj wpisz szczegółowe pytanie wraz z detalami"></textarea>
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="date-input">Data utworzenia</label>
+            <input id="date-input" value="2000-01-01" type="date" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="close-date-input">Data zamknięcia</label>
+            <input id="close-date-input" type="date">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="author-input">Autor</label>
+            <select id="author-input" name="author">
+                <option value="user1">user1</option>
+                <option value="user2">user2</option>
+                <option value="user3">user3</option>
+                <option value="user4">user4</option>
+            </select>
+        </div>
+        <button type="submit">Zatwierdź</button>
+        <p class="invalid-form-message">Nieprawidłowo wypełniony formularz</p>         
+    </form>
+</div>

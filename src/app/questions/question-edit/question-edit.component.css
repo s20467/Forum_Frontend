@@ -1,0 +1,99 @@
+.form-group{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.form-group:last-of-type{
+    margin-bottom: 0;
+}
+
+label{
+    font-size: 1.2rem;
+}
+
+.form-header{
+    font-size: 2.7rem;
+    padding-bottom: 2%;
+    margin-bottom: 5%;
+    border-bottom: 2px solid var(--main);
+    letter-spacing: -2px;
+}
+
+#title-input, #content-input, #date-input, #close-date-input, #author-input{
+    width: 100%;
+    font-size: 0.9rem;
+    margin-top: 0.9em;
+    border: none;
+    outline: none;
+    background-color: var(--grey-tint-3);
+    padding: 10px;
+    border-radius: 10px;
+    font-family: inherit;
+    color: inherit;
+}
+
+#date-input[disabled]{
+    color: var(--grey-shade-4);
+}
+
+#title-input{
+    height: 100px;
+    width: 100% !important;
+}
+
+form{
+    width: 100%;
+}
+
+#content-input{
+    height: 400px;
+    width: 100% !important;
+}
+
+.form-label:not(:first-child){
+    font-size: 1.2rem;
+    margin-top: 3rem;
+}
+
+button[type="submit"]{
+    width: 100%;
+    background-color: var(--main-shade-1);
+    color: var(--main-tint-1);
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.3rem;
+    margin-top: 3rem;
+}
+
+form button:hover{
+    background-color: var(--main-shade-2);
+    cursor: pointer;
+}
+
+.answers-header, .users-header{
+    border-bottom: 2px solid var(--main);
+    margin-bottom: 48px;
+}
+
+
+textarea.ng-invalid.ng-touched, input.ng-invalid.ng-touched{
+    border: 3px solid red;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.invalid-form-message{
+    color: red;
+}
+
+form:invalid .invalid-form-message{
+    display: inline-block;
+}
+
+
+
+@media(max-width: 700px){
+    .form-header{
+        font-size: 2.3rem;
+    }
+}

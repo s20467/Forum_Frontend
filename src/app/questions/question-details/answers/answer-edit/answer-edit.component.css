@@ -1,0 +1,95 @@
+.answer-component{
+    position: relative;
+    padding: 36px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.form-group{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.form-group:last-of-type{
+    margin-bottom: 0;
+}
+
+.credentials-form input{
+    padding: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--grey-tint-3);
+}
+
+label{
+    font-size: 1.2rem;
+}
+
+#content-input, #date-input, #author-input{
+    width: 100%;
+    font-size: 0.9rem;
+    margin-top: 0.9em;
+    border: none;
+    outline: none;
+    background-color: var(--grey-tint-3);
+    padding: 10px;
+    border-radius: 10px;
+    font-family: inherit;
+    color: inherit;
+}
+
+#date-input[disabled]{
+    color: var(--grey-shade-4);
+}
+
+#title-input{
+    height: 100px;
+    width: 100% !important;
+}
+
+form{
+    width: 100%;
+}
+
+#content-input{
+    height: 400px;
+    width: 100% !important;
+}
+
+.form-label:not(:first-child){
+    font-size: 1.2rem;
+    margin-top: 3rem;
+}
+
+.main-content form{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+button[type="submit"]{
+    width: 100%;
+    background-color: var(--main-shade-1);
+    color: var(--main-tint-1);
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.3rem;
+    margin-top: 3rem;
+}
+
+form button:hover{
+    background-color: var(--main-shade-2);
+    cursor: pointer;
+}
+
+
+textarea.ng-invalid.ng-touched, input.ng-invalid.ng-touched{
+    border: 3px solid red;
+    background-color: rgba(255, 0, 0, 0.1);
+}
