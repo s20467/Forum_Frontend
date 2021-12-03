@@ -18,6 +18,8 @@ body{
     --main-tint-1: #ECFDF5;
     --main-tint-2: #D1FAE5;
     --main-tint-3: #A7F3D0;
+    --main-tint-4: #6EE7B7;
+    --main-tint-5: #34D399;
     --main-shade-3: #047857;
     --main-shade-2: #065F46;
     --main-shade-1: #064E3B;
@@ -40,6 +42,7 @@ body{
 a{
     color: inherit;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .transparent-button{
