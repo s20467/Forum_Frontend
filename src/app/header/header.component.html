@@ -3,9 +3,9 @@
         <h1 id="app-logo-title">Forum</h1>
         <nav class="standard-header-nav">
             <ul class="standard-nav-menu">
-                <li><a>Strona główna</a></li>
-                <li><a>Użytkownicy</a></li>
-                <li><a>Zaloguj się</a></li>
+                <li><a [routerLink]="['/questions']">Strona główna</a></li>
+                <li><a [routerLink]="['/users']">Użytkownicy</a></li>
+                <li><a [routerLink]="['/login']">Zaloguj się</a></li>
             </ul>
         </nav>
         <button (click)="toggleOpen()" class="header-nav-button transparent-button">
@@ -18,9 +18,9 @@
     </div>
     <nav *ngIf="isMenuOpen" class="responsive-header-nav">
         <ul class="responsive-nav-menu">
-            <li><a>Strona główna</a></li>
-            <li><a>Użytkownicy</a></li>
-            <li><a>Zaloguj się</a></li>
+            <li><a [routerLink]="['/questions']" (click)="toggleOpen()">Strona główna</a></li>
+            <li><a [routerLink]="['/users']" (click)="toggleOpen()">Użytkownicy</a></li>
+            <li><a [routerLink]="['/login']" (click)="toggleOpen()">Zaloguj się</a></li>
         </ul>
     </nav>
 </header>

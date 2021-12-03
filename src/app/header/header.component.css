@@ -32,7 +32,7 @@
 
 .responsive-header-nav{
     border-top: 2px solid var(--main);
-    padding: 10px 0px;
+    padding: 10px 0;
 }
 
 .standard-header-nav .standard-nav-menu{
@@ -122,6 +122,13 @@
 
     .header-nav-button{
         display: inline-block;
+    }
+}
+
+@media(max-width: 700px){
+    .main-header{
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
 
