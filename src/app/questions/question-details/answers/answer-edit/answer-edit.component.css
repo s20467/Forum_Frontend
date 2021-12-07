@@ -30,7 +30,7 @@ label{
     font-size: 1.2rem;
 }
 
-#content-input, #date-input, #author-input{
+input, textarea, select, option{
     width: 100%;
     font-size: 0.9rem;
     margin-top: 0.9em;
@@ -42,6 +42,20 @@ label{
     font-family: inherit;
     color: inherit;
 }
+
+
+/* #content-input, #date-input, #author-input{
+    width: 100%;
+    font-size: 0.9rem;
+    margin-top: 0.9em;
+    border: none;
+    outline: none;
+    background-color: var(--grey-tint-3);
+    padding: 10px;
+    border-radius: 10px;
+    font-family: inherit;
+    color: inherit;
+} */
 
 #date-input[disabled]{
     color: var(--grey-shade-4);
@@ -88,8 +102,12 @@ form button:hover{
     cursor: pointer;
 }
 
-
-textarea.ng-invalid.ng-touched, input.ng-invalid.ng-touched{
-    border: 3px solid red;
+form.ng-submitted textarea.ng-invalid, form.ng-submitted input.ng-invalid, form.ng-submitted select.ng-invalid{
+    border: 2px solid red;
     background-color: rgba(255, 0, 0, 0.1);
+}
+
+.validation-message{
+    color: red;
+    font-size: 0.9rem;
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Answer } from 'src/app/shared/answer.model';
 
 @Component({
   selector: 'app-answers',
