@@ -30,6 +30,7 @@ import { PasswordButtonComponent } from './shared/buttons/password-button/passwo
 import { QuestionsButtonComponent } from './shared/buttons/questions-button/questions-button.component';
 import { UserChangePasswordComponent } from './users/user-change-password/user-change-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ClosedComponent } from './shared/closed/closed.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UserListItemComponent,
     PasswordButtonComponent,
     QuestionsButtonComponent,
-    UserChangePasswordComponent
+    UserChangePasswordComponent,
+    ClosedComponent
   ],
   imports: [
     BrowserModule,

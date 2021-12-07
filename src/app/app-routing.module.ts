@@ -17,6 +17,8 @@ const routes: Routes = [
   {path: '', redirectTo: '/questions', pathMatch: 'full'},
   {path: 'questions', component: QuestionsComponent, children:[
     {path: 'new', component: QuestionEditComponent},
+    {path: 'list', component: QuestionListComponent},
+    {path: '', redirectTo: 'list', pathMatch: 'full'},
     {path: ':questionId/edit', component: QuestionEditComponent},
     {path: ':questionId/answers', component: QuestionDetailsComponent, children:[
       {path: '', component: AnswersComponent, children:[
@@ -24,17 +26,15 @@ const routes: Routes = [
         {path: 'new', component: AnswerEditComponent},
         {path: ':answerId/edit', component: AnswerEditComponent}
       ]}
-    ]},
-    {path: '', component: QuestionListComponent, pathMatch: 'full'},
+    ]}
   ]},
   {path: 'users', component: UsersComponent, children:[
     {path: '', redirectTo: 'list', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
-    {path: 'change-password', component: UserChangePasswordComponent},
+    {path: ':username/change-password', component: UserChangePasswordComponent},
     {path: 'list', component: UserListComponent},
     {path: 'register', component: UserCreateComponent},
     {path: 'new', component: UserCreateComponent},
-    {path: 'list', component: LoginComponent}
   ]},
   {path: 'login', redirectTo: 'users/login'}
 ];
