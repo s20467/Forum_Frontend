@@ -1,11 +1,15 @@
+import { Answer } from "./answer.model";
+import { User } from "./user.model";
+
 export class Question{
     id: number;
     title: string;
     content: string;
     author: string;
-    creationDate: Date;
-    isClosed: boolean;
-    numberOfUpVotes: number;
-    numberOfDownVotes: number;
-    numberOfAnswers: number;
+    createdAt: Date;
+    bestAnswer: number | Answer;
+    closedAt: Date;
+    upVotes: number[] | string[] | User[];
+    downVotes: number[] | string[] | User[];
+    answers: number[] | Answer[];
 }
