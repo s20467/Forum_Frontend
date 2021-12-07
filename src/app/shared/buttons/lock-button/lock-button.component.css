@@ -1,22 +1,22 @@
-.close-icon{
+.close-icon, .open-icon{
     width: 1.5rem;
     height: 1.5rem;
     cursor: pointer;
 }
 
-.close-icon *{
+.close-icon *, .open-icon *{
     stroke: var(--grey-shade-3);
 }
 
-.close-icon .icon-dot-part{
+.close-icon .icon-dot-part, .open-icon .icon-dot-part{
     fill: var(--grey-shade-3);
 }
 
-button:hover .close-icon *{
+button:hover .close-icon *, button:hover .open-icon *{
     stroke: #FBBF24;
 }
 
-button:hover .close-icon .icon-dot-part{
+button:hover .close-icon .icon-dot-part, button:hover .open-icon .icon-dot-part{
     fill: #FBBF24;
 }
 
@@ -25,5 +25,9 @@ span{
 }
 
 span:empty{
+    display: none;
+}
+
+.dnone{
     display: none;
 }

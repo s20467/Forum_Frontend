@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-lock-button',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lock-button.component.css']
 })
 export class LockButtonComponent implements OnInit {
+
+  @Input('is-locked') isLocked=false;
 
   constructor() { }
 
