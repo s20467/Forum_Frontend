@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Answer } from 'src/app/shared/answer.model';
 import { Question } from 'src/app/shared/question.model';
+import { QuestionsService } from 'src/app/shared/questions.service';
 
 @Component({
   selector: 'app-question-details',
@@ -8,25 +11,35 @@ import { Question } from 'src/app/shared/question.model';
 })
 export class QuestionDetailsComponent implements OnInit {
 
-  question: Question = {
-    id: 1,
-    title: 'Static/Dynamic vs Strong/Weakwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww',
-    content: "I see these terms bandied around all over the place in programming and I have a vague notion of what they mean. A search shows me that such things have been asked all over stack overflow in fact. As far as I'm aware Static/Dynamic typing in languages is subtly different to Strong/Weak typing but what that difference is eludes me. Different sources seem to use different meanings or even use the terms interchangeably. I can't find somewhere that talks about both and actually spells out the difference. What would be nice is if someone could please spell this out clearly here for me and the rest of the worldwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww.",
-    author: 'Author',
-    creationDate: new Date(2020, 11, 3),
-    isClosed: false,
-    numberOfUpVotes: 3,
-    numberOfDownVotes: 10,
-    numberOfAnswers: 3
-  };
+  question: Question;
 
-  answers = {
-
-  }
-
-  constructor() { }
+  constructor(private questionService: QuestionsService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      this.questionService.getQuestionById(+params['questionId']).subscribe((question: Question) => {
+        this.question = question;
+      });
+    });
   }
 
+  toggleCloseQuestion(){
+    if(this.question.closedAt == null)
+      this.questionService.closeQuestion(this.question.id).subscribe((question: Question) => {
+        this.question = question;
+        this.questionService.emitQuestionsChanged();
+      });
+    else
+      this.questionService.openQuestion(this.question.id).subscribe((question: Question) => {
+        this.question = question;
+        this.questionService.emitQuestionsChanged();
+      });
+  }
+
+  deleteQuestion(){
+    this.questionService.deleteQuestion(this.question.id).subscribe(() => {
+      this.router.navigate(['..']);
+      this.questionService.emitQuestionsChanged();
+    });
+  }
 }

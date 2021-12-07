@@ -15,7 +15,7 @@
 .question-details-component{
     position: relative;
     color: var(--grey-shade-1);
-    padding: 42px 36px 24px 36px;
+    padding: 46px 36px 24px 36px;
     margin-bottom: 36px;
     border-radius: 0 10px 10px 0;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
@@ -111,7 +111,7 @@
 
 .date{
     float: right;
-    margin-right: 32px;
+    margin-right: 2%;
     margin-left: 5px;
 }
 
@@ -122,49 +122,15 @@
 .answers-header{
     border-bottom: 2px solid var(--main);
     margin-bottom: 5%;
+    padding-bottom: 2%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
 .answers-header h2{
     font-size: 2.7rem;
-    padding-bottom: 2%;
     letter-spacing: -2px;
-    float: left;
-}
-
-.add-answer-box{
-    float: right;
-    width: fit-content;
-    padding: 12px 24px;
-    cursor: pointer;
-    font-size: 1.3rem;
-    color: var(--main-shade-3);
-    border-radius: 10px;
-}
-
-.add-answer-box:hover{
-    background-color: var(--main-shade-3);
-    color: var(--main-tint-1);
-}
-
-.add-answer-box .shorter-content{
-    display: none;
-}
-
-.add-answer-icon{
-    width: 1.5rem;
-    height: 1.5rem;
-    position: relative;
-    top: 5px;
-    margin-right: 5px;
-    margin-top: -10px;
-}
-
-.add-answer-icon *{
-    stroke: var(--main-shade-3);
-}
-
-.add-answer-box:hover *{
-    stroke: var(--main-tint-1);
 }
 
 .more-options-box{
@@ -179,6 +145,16 @@
     top: 15px;
 }
 
+.question-closed-info{
+    color: var(--grey-shade-3);
+    position: relative;
+    top: 4px;
+}
+
+.question-data{
+    width: 100%;
+}
+
 @media(max-width: 700px){
     .main-content{
         padding-top: 0;
@@ -186,6 +162,10 @@
     .question-details-component{
         padding-left: 10px;
         padding-right: 10px;
+        padding-top: 60px;
+    }
+    .question-closed-info{
+        font-size: 0.9rem;
     }
     .voting-component{
         padding-right: 0px;
