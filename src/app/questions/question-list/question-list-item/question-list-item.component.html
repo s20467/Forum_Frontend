@@ -1,20 +1,24 @@
 <a [routerLink]="['/questions', question.id, 'answers']">
-    <div class="question-component">
+    <div class="question-component" [class.closed]="question?.closedAt != null">
+        <div *ngIf="question?.closedAt != null" class="question-closed-info-box">
+            <span class="question-closed-info">wątek zamknięty</span>
+            <app-lock-button [is-locked]="true"></app-lock-button>
+        </div>
         <div class="votes-answers-numbers">
             <div class="votes-number">
                 <svg class="votes-icon" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">
                     <path d="M133.65683,211.88227l81.0323-81.0322c19.9104-19.91038,22.84784-52.666,4.00583-73.59029a52.0026,52.0026,0,0,0-75.46451-2.02934L127.99994,70.46082,114.85007,57.3109C94.93972,37.40047,62.18409,34.463,41.25979,53.305a52.00261,52.00261,0,0,0-2.02934,75.46452l83.11268,83.11272A8,8,0,0,0,133.65683,211.88227Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
                 </svg>
-                {{ question.numberOfUpVotes - question.numberOfDownVotes }}
+                {{ question.upVotes.length - question.downVotes.length }}
             </div>
             <div class="answers-number">
                 <svg class="votes-icon" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">
                     <path class="icon-color-main" d="M149.66907,195.88358l-14.80961,24.68269a8,8,0,0,1-13.71989,0l-14.80964-24.68272a8,8,0,0,0-6.85994-3.884H39.99951a8,8,0,0,1-8-8V56a8,8,0,0,1,8-8h176a8,8,0,0,1,8,8V184a8,8,0,0,1-8,8l-59.47039-.00041A8,8,0,0,0,149.66907,195.88358Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
                 </svg>
-                {{ question.numberOfAnswers }}
+                {{ question.answers.length }}
             </div>
         </div>
-        <div>
+        <div class="question-data">
             <p class="title">{{ question.title }}</p>
             <p class="content">{{ question.content | shorten:300 }}</p>
             <div class="author-date-component clearfix">
@@ -23,7 +27,7 @@
                     <path class="icon-path" d="M30.989,215.99064a112.03731,112.03731,0,0,1,194.02311.002" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
                 </svg>
                 <p class="author">{{ question.author }}</p>
-                <p class="date">{{ question.creationDate | date }}</p>
+                <p class="date">{{ question.createdAt | date }}</p>
                 <svg class="date-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#000000" viewBox="0 0 256 256">
                     <rect x="40" y="40" width="176" height="176" rx="8" stroke-width="16" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" fill="none"></rect>
                     <line x1="176" y1="24" x2="176" y2="56" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
