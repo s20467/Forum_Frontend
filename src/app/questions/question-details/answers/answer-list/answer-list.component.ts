@@ -1,43 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Answer } from 'src/app/shared/answer.model';
+import { Question } from 'src/app/shared/question.model';
+import { QuestionsService } from 'src/app/shared/questions.service';
 
 @Component({
   selector: 'app-answer-list',
   templateUrl: './answer-list.component.html',
   styleUrls: ['./answer-list.component.css']
 })
-export class AnswerListComponent implements OnInit {
+export class AnswerListComponent implements OnInit, OnDestroy {
 
-  answers: Answer[] = [
-    {
-      id: 1,
-      content: 'Ttreść odpowiedzi, Treśććććććććććććććććććććććććććććććććććććććććććććććććććććććććććććć odpowiedziwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww, Treść odpowiedzi, Treść odpowiedzi, Treść odpowiedzi, Treść odpowiedzi, Treść odpowiedzi, Treść odpowiedzi, Treść odpowiedzi, Treść odpowiedzi',
-      author: 'Autor',
-      creationDate: new Date(2020, 12, 3),
-      numberOfUpVotes: 5,
-      numberOfDownVotes: 3
-    },
-    {
-      id: 2,
-      content: 'Ttreść odpowiedzi, Treść odpowiedziwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww, Treść odpowiedzi, Treść odpowiedzi, Treść odpowiedzi, Treść odpowiedzi, Treść odpowiedzi, Treść odpowiedzi, Treść odpowiedzi, Treść odpowiedzi',
-      author: 'Autor',
-      creationDate: new Date(2020, 12, 3),
-      numberOfUpVotes: 5,
-      numberOfDownVotes: 3
-    },
-    {
-      id: 3,
-      content: 'Ttreść odpowiedzi, Treść odpowiedziwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww, Treść odpowiedzi, Treść odpowiedzi, Treść odpowiedzi, Treść odpowiedzi, Treść odpowiedzi, Treść odpowiedzi, Treść odpowiedzi, Treść odpowiedzi',
-      author: 'Autor',
-      creationDate: new Date(2020, 12, 3),
-      numberOfUpVotes: 5,
-      numberOfDownVotes: 3
-    }
-  ]
+  questionId: number;
+  answers: Answer[] = [];
+  answersChangedSub: Subscription;
 
-  constructor() { }
+  constructor(private questionsService: QuestionsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      this.questionId = +params['questionId'];
+      this.questionsService.getAnswersByQuestionsId(this.questionId).subscribe((answers: Answer[]) =>{
+        this.answers = answers;
+      });
+    })
+    this.answersChangedSub = this.questionsService.answersChanged.subscribe(() => {
+      this.questionsService.getAnswersByQuestionsId(this.questionId).subscribe((answers) => {
+        this.answers = answers;
+      });
+    });
+  }
+
+  ngOnDestroy(){
+    this.answersChangedSub.unsubscribe();
   }
 
 }

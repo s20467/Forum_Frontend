@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { QuestionsService } from 'src/app/shared/questions.service';
 
 @Component({
   selector: 'app-answer-list-item',
@@ -9,9 +10,14 @@ export class AnswerListItemComponent implements OnInit {
 
   @Input('answer') answer;
 
-  constructor() { }
+  constructor(private questionsService: QuestionsService) { }
 
   ngOnInit(): void {
   }
 
+  deleteAnswer(){
+    this.questionsService.deleteAnswer(this.answer.id).subscribe(() => {
+      this.questionsService.emitAnswersChanged();
+    })
+  }
 }

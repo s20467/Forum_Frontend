@@ -95,7 +95,7 @@
 
 .date{
     float: right;
-    margin-right: 32px;
+    margin-right: 2%;
     margin-left: 5px;
 }
 
@@ -111,6 +111,9 @@
     gap: 10px;
 }
 
+.answer-data{
+    width: 100%;
+}
 
 
 @media(max-width: 900px){

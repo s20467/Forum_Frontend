@@ -5,7 +5,7 @@
                 <polyline points="48 160 128 80 208 160" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
             </svg>
         </button>
-        {{ answer.numberOfUpVotes - answer.numberOfDownVotes }}
+        {{ answer.upVotes.length - answer.downVotes.length }}
         <button class="transparent-button">
             <svg class="downvote-icon" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">
                 <polyline points="208 96 128 176 48 96" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
@@ -13,10 +13,10 @@
         </button>
     </div>
     <div class="more-options-box">
-        <app-edit-button></app-edit-button>
-        <app-delete-button></app-delete-button>
+        <app-edit-button [routerLink]="'../edit'"></app-edit-button>
+        <app-delete-button (click)="deleteAnswer()"></app-delete-button>
     </div>
-    <div>
+    <div class="answer-data">
         <p class="content">{{ answer.content }}</p>
         <div class="author-date-component clearfix">
             <svg class="author-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#000000" viewBox="0 0 256 256">
@@ -24,7 +24,7 @@
                 <path class="icon-path" d="M30.989,215.99064a112.03731,112.03731,0,0,1,194.02311.002" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
             </svg>
             <p class="author">{{ answer.author }}</p>
-            <p class="date">{{ answer.creationDate | date }}</p>
+            <p class="date">{{ answer.createdAt | date }}</p>
             <svg class="date-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#000000" viewBox="0 0 256 256">
                 <rect x="40" y="40" width="176" height="176" rx="8" stroke-width="16" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" fill="none"></rect>
                 <line x1="176" y1="24" x2="176" y2="56" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
