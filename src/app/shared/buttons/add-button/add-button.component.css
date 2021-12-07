@@ -1,6 +1,5 @@
 
 .add-answer-box{
-    float: right;
     width: fit-content;
     padding: 12px 24px;
     cursor: pointer;
@@ -14,9 +13,6 @@
     color: var(--main-tint-1);
 }
 
-.add-answer-box .shorter-content{
-    display: none;
-}
 
 .add-answer-icon{
     width: 1.5rem;
