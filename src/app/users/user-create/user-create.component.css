@@ -31,7 +31,7 @@ label{
     letter-spacing: -2px;
 }
 
-#username-input, #password-input, #password-repeat-input{
+input, textarea, select, option{
     width: 100%;
     font-size: 0.9rem;
     margin-top: 0.9em;
@@ -69,18 +69,16 @@ form button:hover{
     cursor: pointer;
 }
 
-textarea.ng-invalid.ng-touched, input.ng-invalid.ng-touched{
-    border: 3px solid red;
+form.ng-submitted textarea.ng-invalid, form.ng-submitted input.ng-invalid, form.ng-submitted select.ng-invalid{
+    border: 2px solid red;
     background-color: rgba(255, 0, 0, 0.1);
 }
 
-.invalid-form-message{
+.validation-message{
     color: red;
+    font-size: 0.9rem;
 }
 
-form:invalid .invalid-form-message{
-    display: inline-block;
-}
 
 
 
