@@ -1,0 +1,14 @@
+.closed-icon{
+    width: 2.5rem;
+    height: 2.5rem;
+    position: relative;
+    top: 2px;
+}
+
+.closed-icon *{
+    stroke: var(--grey-shade-3);
+}
+
+.closed-icon .icon-dot-part{
+    fill: var(--grey-shade-3);
+}
