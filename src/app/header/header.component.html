@@ -17,10 +17,10 @@
         </button>
     </div>
     <nav *ngIf="isMenuOpen" class="responsive-header-nav">
-        <ul class="responsive-nav-menu">
-            <li><a [routerLink]="['/questions']" (click)="toggleOpen()">Strona główna</a></li>
-            <li><a [routerLink]="['/users']" (click)="toggleOpen()">Użytkownicy</a></li>
-            <li><a [routerLink]="['/login']" (click)="toggleOpen()">Zaloguj się</a></li>
+        <ul class="responsive-nav-menu" (click)="toggleOpen()">
+            <li><a [routerLink]="['/questions']">Strona główna</a></li>
+            <li><a [routerLink]="['/users']">Użytkownicy</a></li>
+            <li><a [routerLink]="['/login']">Zaloguj się</a></li>
         </ul>
     </nav>
 </header>
