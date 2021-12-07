@@ -1,33 +1,58 @@
 <div class="form-container">
     <h2 class="form-header">Utwórz Pytanie - Admin</h2>
-    <form>
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm">
         <div class="form-group">
             <label class="form-label" for="title-input">Tytuł Pytania</label>
-            <textarea name="title" id="title-input" required minlength="10" placeholder="Tutaj wpisz skrócony opis pytania" autofocus></textarea>
-            <p class="invalid-input-message">Niewłaściwy tytuł pytania</p>
+            <textarea 
+                name="title" 
+                id="title-input" 
+                required 
+                minlength="10"
+                maxlength="255"
+                placeholder="Tutaj wpisz skrócony opis pytania" 
+                autofocus
+                [ngModel]="question.title"
+                #title="ngModel">
+            </textarea>
+            <p *ngIf="form.submitted && title.hasError('required')" class="validation-message">Tytuł jest wymagany</p>
+            <p *ngIf="form.submitted && title.hasError('minlength') && !title.hasError('required')" class="validation-message">Tytuł musi zawierać co najmniej 10 znaków</p>
         </div>
         <div class="form-group">
             <label class="form-label" for="content-input">Treść Pytania</label>
-            <textarea name="content" id="content-input" placeholder="Tutaj wpisz szczegółowe pytanie wraz z detalami"></textarea>
+            <textarea 
+                name="content" 
+                id="content-input" 
+                placeholder="Tutaj wpisz szczegółowe pytanie wraz z detalami"
+                [ngModel]="question.content">
+            </textarea>
         </div>
         <div class="form-group">
             <label class="form-label" for="date-input">Data utworzenia</label>
-            <input id="date-input" value="2000-01-01" type="date" required>
+            <input 
+                id="date-input" 
+                name="createdAt"
+                type="date"
+                required
+                [ngModel]="question.createdAt | date:'yyyy-MM-dd'"
+                #createdAt="ngModel">
+                <p *ngIf="form.submitted && createdAt.hasError('required')" class="validation-message">Data utworzenia jest wymagana</p>
         </div>
         <div class="form-group">
             <label class="form-label" for="close-date-input">Data zamknięcia</label>
-            <input id="close-date-input" type="date">
+            <input 
+                id="close-date-input" 
+                name="closedAt"
+                type="date"
+                [ngModel]="question.closedAt | date:'yyyy-MM-dd'">
         </div>
         <div class="form-group">
             <label class="form-label" for="author-input">Autor</label>
-            <select id="author-input" name="author">
-                <option value="user1">user1</option>
-                <option value="user2">user2</option>
-                <option value="user3">user3</option>
-                <option value="user4">user4</option>
+            <select id="author-input" name="author" [ngModel]="users[0]" required #author="ngModel">
+                <option *ngFor="let user of users" [value]="user">{{ user }}</option>
             </select>
+            <p *ngIf="form.submitted && author.hasError('required')" class="validation-message">Autor jest wymagany</p>
         </div>
         <button type="submit">Zatwierdź</button>
-        <p class="invalid-form-message">Nieprawidłowo wypełniony formularz</p>         
+        <p *ngIf="form.invalid && form.touched" class="validation-message">Nieprawidłowo wypełniony formularz</p>
     </form>
 </div>
