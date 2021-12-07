@@ -37,6 +37,12 @@
     color: inherit;
 }
 
+.input-with-validation-messages{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 .confirm-form-icon, .reject-form-icon{
     height: 2rem;
     width: 2rem;
@@ -57,6 +63,16 @@
 
 .reject-form-icon:hover{
     background-color: #FCA5A5;
+}
+
+form.ng-submitted textarea.ng-invalid, form.ng-submitted input.ng-invalid, form.ng-submitted select.ng-invalid{
+    border: 2px solid red;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.validation-message{
+    color: red;
+    font-size: 0.9rem;
 }
 
 
