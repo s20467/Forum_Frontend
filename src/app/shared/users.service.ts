@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AsyncValidatorFn } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { User } from './user.model';
 
 @Injectable({
@@ -9,7 +10,7 @@ import { User } from './user.model';
 })
 export class UsersService {
 
-  private UrlBase: string = 'http://localhost:8080/api/'
+  private UrlBase: string = environment.apiUrlBase;
   usersChanged: Subject<any> = new Subject();
 
   constructor(private http: HttpClient) {}
@@ -38,7 +39,7 @@ export class UsersService {
   }
 
   changeUserPassword(username: string, newPassword: string){
-    return this.http.post(this.UrlBase + 'users/' + username + '/change-password', newPassword);
+    return this.http.post(this.UrlBase + 'users/' + username + '/change-password', {'password': newPassword});
   }
 
   emitUsersChanged(){

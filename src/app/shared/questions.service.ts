@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Answer } from './answer.model';
 import { Question } from './question.model';
 
@@ -9,8 +10,7 @@ import { Question } from './question.model';
 })
 export class QuestionsService {
 
-  // private UrlBase: string = 'http://192.168.8.109:8080/api/';
-  private UrlBase: string = 'http://localhost:8080/api/';
+  private UrlBase: string = environment.apiUrlBase;
 
   questionsChanged = new Subject<any>();
   answersChanged = new Subject<any>();
@@ -33,6 +33,14 @@ export class QuestionsService {
 
   getAnswersByQuestionsId(questionId: number){
     return this.http.get<Answer[]>(this.UrlBase + "questions/" + questionId + "/answers");
+  }
+
+  getQuestionsByUser(username: string){
+    return this.http.get<Question[]>(this.UrlBase + "questions/get-by-author/" + username);
+  }
+
+  getOpenQuestions(){
+    return this.http.get<Question[]>(this.UrlBase + "questions/not-closed");
   }
 
   createQuestion(question: Question){
