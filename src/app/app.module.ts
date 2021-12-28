@@ -31,6 +31,9 @@ import { QuestionsButtonComponent } from './shared/buttons/questions-button/ques
 import { UserChangePasswordComponent } from './users/user-change-password/user-change-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClosedComponent } from './shared/closed/closed.component';
+import { AllQuestionsComponent } from './questions/all-questions/all-questions.component';
+import { UserQuestionsComponent } from './questions/user-questions/user-questions.component';
+import { OpenQuestionsComponent } from './questions/open-questions/open-questions.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,10 @@ import { ClosedComponent } from './shared/closed/closed.component';
     PasswordButtonComponent,
     QuestionsButtonComponent,
     UserChangePasswordComponent,
-    ClosedComponent
+    ClosedComponent,
+    AllQuestionsComponent,
+    UserQuestionsComponent,
+    OpenQuestionsComponent
   ],
   imports: [
     BrowserModule,
