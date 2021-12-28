@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Question } from 'src/app/shared/question.model';
 import { QuestionsService } from 'src/app/shared/questions.service';
@@ -8,26 +8,13 @@ import { QuestionsService } from 'src/app/shared/questions.service';
   templateUrl: './question-list.component.html',
   styleUrls: ['./question-list.component.css']
 })
-export class QuestionListComponent implements OnInit, OnDestroy {
+export class QuestionListComponent implements OnInit {
 
-  questions: Question[] = [];
-  questionsChangedSub: Subscription;
+  @Input('questions') questions: Question[] = [];
 
-  constructor(private questionsService: QuestionsService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.questionsService.getQuestions().subscribe((questions) => {
-      this.questions = questions;
-    });
-    this.questionsChangedSub = this.questionsService.questionsChanged.subscribe(() => {
-      this.questionsService.getQuestions().subscribe((questions) => {
-        this.questions = questions;
-      });
-    })
-  }
-
-  ngOnDestroy(){
-    this.questionsChangedSub.unsubscribe();
   }
 
 }
