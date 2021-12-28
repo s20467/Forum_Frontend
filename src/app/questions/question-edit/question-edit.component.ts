@@ -6,6 +6,7 @@ import { QuestionsService } from 'src/app/shared/questions.service';
 import { User } from 'src/app/shared/user.model';
 import { UsersService } from 'src/app/shared/users.service';
 import { map } from 'rxjs/operators'
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-question-edit',
@@ -22,7 +23,8 @@ export class QuestionEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router, 
     private questionsService: QuestionsService, 
-    private usersService: UsersService) {}
+    private usersService: UsersService,
+    private location: Location) {}
 
   ngOnInit(): void {
     this.usersService.getUsers()
@@ -52,7 +54,8 @@ export class QuestionEditComponent implements OnInit {
         this.questionsService.createQuestion(form.value).subscribe(
           (response) => {
             this.questionsService.emitQuestionsChanged();
-            this.router.navigate(['..'], {relativeTo: this.route});
+            // this.router.navigate(['..'], {relativeTo: this.route});
+            this.location.back();
           }
         );
       }
@@ -60,7 +63,8 @@ export class QuestionEditComponent implements OnInit {
         this.questionsService.updateQuestion(this.question.id, form.value).subscribe(
           (response) => {
             this.questionsService.emitQuestionsChanged();
-            this.router.navigate(['..'], {relativeTo: this.route});
+            // this.router.navigate(['..'], {relativeTo: this.route});
+            this.location.back();
           }
         );
       }

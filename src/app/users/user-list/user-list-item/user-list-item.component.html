@@ -1,6 +1,6 @@
 <div *ngIf="!isEditMode" class="user-component">
     <span class="username">{{ user.username }}</span>
-    <app-questions-button>Wyświetl pytania</app-questions-button>
+    <app-questions-button [routerLink]="['/questions', 'user-questions', user.username]">Wyświetl pytania</app-questions-button>
     <app-edit-button (click)="onToggleOnEditMode()">Edytuj nazwę</app-edit-button>
     <app-password-button [routerLink]="['..', user.username, 'change-password']">Edytuj hasło</app-password-button>
     <app-delete-button (click)="deleteUser()">Usuń</app-delete-button>
