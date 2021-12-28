@@ -3,7 +3,7 @@
     margin-left: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: flex-start;
     flex: 0 0 fit-content;
     color: var(--grey-shade-3);
