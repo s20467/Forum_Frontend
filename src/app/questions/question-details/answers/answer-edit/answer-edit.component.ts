@@ -43,7 +43,7 @@ export class AnswerEditComponent implements OnInit {
       if(answerId){
         this.isEditMode = true;
         this.questionsService.getAnswerById(answerId).subscribe((answer: Answer) => {
-          this.answer = this.answer;
+          this.answer = answer;
         });
       }
     }
@@ -54,7 +54,7 @@ export class AnswerEditComponent implements OnInit {
           this.questionsService.createAnswer(this.questionId, form.value).subscribe(
             (response) => {
               this.questionsService.emitAnswersChanged();
-              this.router.navigate(['..'], {relativeTo: this.route});
+              this.router.navigate(['../..'], {relativeTo: this.route});
             }
           );
         }
@@ -62,7 +62,7 @@ export class AnswerEditComponent implements OnInit {
           this.questionsService.updateAnswer(this.answer.id, form.value).subscribe(
             (response) => {
               this.questionsService.emitAnswersChanged();
-              this.router.navigate(['..'], {relativeTo: this.route});
+              this.router.navigate(['../..'], {relativeTo: this.route});
             }
           );
         }

@@ -13,7 +13,7 @@
         </button>
     </div>
     <div class="more-options-box">
-        <app-edit-button [routerLink]="'../edit'"></app-edit-button>
+        <app-edit-button [routerLink]="[answer.id, 'edit']"></app-edit-button>
         <app-delete-button (click)="deleteAnswer()"></app-delete-button>
     </div>
     <div class="answer-data">
