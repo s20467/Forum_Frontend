@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Question } from 'src/app/shared/question.model';
 import { QuestionsService } from 'src/app/shared/questions.service';
@@ -18,6 +18,7 @@ export class QuestionEditComponent implements OnInit {
   question: Question = new Question();
   isEditMode: boolean = false;
   users: string[] = [];
+  questionEditForm: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,36 +40,64 @@ export class QuestionEditComponent implements OnInit {
         this.users = users;
       }
     );
+    this.questionEditForm = new FormGroup({
+      'title': new FormControl(this.question.title, [Validators.required, Validators.minLength(10), Validators.maxLength(255)]),
+      'content': new FormControl(this.question.content),
+      'createdAt': new FormControl(this.question.createdAt, Validators.required),
+      'closedAt': new FormControl(this.question.closedAt),
+      'author': new FormControl(this.question.author, Validators.required),
+    }, this.datesChronologyValidator);
     let questionId: number = +this.route.snapshot.params['questionId'];
     if(questionId){
       this.isEditMode = true;
       this.questionsService.getQuestionById(questionId).subscribe((question: Question) => {
         this.question = question;
+        this.questionEditForm.setValue({
+          'title': this.question.title,
+          'content': this.question.content,
+          'createdAt': this.question.createdAt,
+          'closedAt': this.question.closedAt,
+          'author': this.question.author
+        })
       });
     }
   }
 
-  onSubmit(form: NgForm){
-    if(form.valid){
+  onSubmit(){
+    if(this.questionEditForm.valid){
       if(!this.isEditMode){
-        this.questionsService.createQuestion(form.value).subscribe(
+        this.questionsService.createQuestion(this.questionEditForm.value).subscribe(
           (response) => {
             this.questionsService.emitQuestionsChanged();
             // this.router.navigate(['..'], {relativeTo: this.route});
             this.location.back();
+          },
+          (error: Error) => {
+            this.questionEditForm.setErrors({'unknownValidationError': true});
           }
         );
       }
       else{
-        this.questionsService.updateQuestion(this.question.id, form.value).subscribe(
+        this.questionsService.updateQuestion(this.question.id, this.questionEditForm.value).subscribe(
           (response) => {
             this.questionsService.emitQuestionsChanged();
             // this.router.navigate(['..'], {relativeTo: this.route});
             this.location.back();
+          },
+          (error: Error) => {
+            this.questionEditForm.setErrors({'unknownValidationError': true});
           }
         );
       }
     }
+  }
+
+  datesChronologyValidator(group: FormGroup): ValidationErrors{
+    if(Date.parse(group.controls['createdAt'].value) > Date.parse(group.controls['closedAt'].value)){
+      group.controls['closedAt'].setErrors({closedAtBeforeCreatedAt: true});
+      return {passwordRepeatMatch: true};
+    }
+    return null;
   }
 
 }

@@ -29,6 +29,9 @@ export class UserChangePasswordComponent implements OnInit {
       this.usersService.changeUserPassword(this.username, this.passwordChangeForm.value['new-password']).subscribe(() => {
         this.usersService.emitUsersChanged();
         this.router.navigate(['../../list'], {relativeTo: this.route});
+      },
+      (error: Error) => {
+        this.passwordChangeForm.setErrors({'unknownValidationError': true});
       })
     }
   }

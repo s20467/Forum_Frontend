@@ -32,6 +32,9 @@ export class UserCreateComponent implements OnInit {
       this.usersService.createUser(newUser).subscribe(() => {
         this.usersService.emitUsersChanged();
         this.router.navigate(['../list'], {relativeTo: this.route});
+      },
+      (error: Error) => {
+        this.userCreateForm.setErrors({'unknownValidationError': true});
       })
     }
   }

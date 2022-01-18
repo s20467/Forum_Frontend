@@ -24,6 +24,6 @@
 
 @media(max-width: 700px){
     .container{
-        padding: 10px;
+        padding: 0px;
     }
 }

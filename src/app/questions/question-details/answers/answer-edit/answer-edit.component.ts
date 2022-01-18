@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Answer } from 'src/app/shared/answer.model';
 import { QuestionsService } from 'src/app/shared/questions.service';
 import { User } from 'src/app/shared/user.model';
@@ -55,6 +56,9 @@ export class AnswerEditComponent implements OnInit {
             (response) => {
               this.questionsService.emitAnswersChanged();
               this.router.navigate(['../..'], {relativeTo: this.route});
+            },
+            (error: Error) => {
+              form.form.setErrors({'unknownValidationError': true});
             }
           );
         }
@@ -63,6 +67,9 @@ export class AnswerEditComponent implements OnInit {
             (response) => {
               this.questionsService.emitAnswersChanged();
               this.router.navigate(['../..'], {relativeTo: this.route});
+            },
+            (error: Error) => {
+              form.form.setErrors({'unknownValidationError': true});
             }
           );
         }

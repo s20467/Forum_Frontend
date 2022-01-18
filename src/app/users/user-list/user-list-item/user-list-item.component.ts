@@ -39,10 +39,15 @@ export class UserListItemComponent implements OnInit {
 
   onSubmit(){
     if(this.usernameEditForm.valid){
-      this.usersService.editUserExcludePassword(this.user.username, {username: this.usernameEditForm.value['username']}).subscribe(() => {
-        this.usersService.emitUsersChanged();
-        this.isEditMode = false;
-      })
+      this.usersService.editUserExcludePassword(this.user.username, {username: this.usernameEditForm.value['username']}).subscribe(
+        () => {
+          this.usersService.emitUsersChanged();
+          this.isEditMode = false;
+        },
+        (error: Error) => {
+          this.usernameEditForm.setErrors({'unknownValidationError': true});
+        }
+        )
     }
   }
 

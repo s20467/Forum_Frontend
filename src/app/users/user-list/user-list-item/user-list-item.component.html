@@ -13,6 +13,7 @@
             <p *ngIf="form.submitted && usernameEditForm.get('username').hasError('minlength') && !usernameEditForm.get('username').hasError('required')" class="validation-message">Co najmniej 3 znaki</p>
             <p *ngIf="form.submitted && usernameEditForm.get('username').hasError('maxlength') && !usernameEditForm.get('username').hasError('required')" class="validation-message">Co najwyżej 20 znaki</p>
             <p *ngIf="form.submitted && usernameEditForm.get('username').hasError('usernameUsed')" class="validation-message">Nazwa użytkownika zajęta</p>
+            <p *ngIf="form.hasError('unknownValidationError')" class="validation-message">Nieznany błąd walidacji formularza</p>
         </div>
         <button class="transparent-button confirm-username-button" type="submit">
             <svg class="confirm-form-icon" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">

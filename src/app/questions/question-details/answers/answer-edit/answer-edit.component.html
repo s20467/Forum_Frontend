@@ -35,5 +35,6 @@
         </div>
         <button type="submit">Zatwierdź</button>
         <p *ngIf="form.invalid && form.touched" class="validation-message">Nieprawidłowo wypełniony formularz</p>
+        <p *ngIf="form.hasError('unknownValidationError')" class="validation-message">Nieznany błąd walidacji formularza</p>
     </form>
 </div>
