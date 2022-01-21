@@ -64,6 +64,7 @@ export class QuestionEditComponent implements OnInit {
   }
 
   onSubmit(){
+    console.log(this.questionEditForm.get('title'));
     if(this.questionEditForm.valid){
       if(!this.isEditMode){
         this.questionsService.createQuestion(this.questionEditForm.value).subscribe(

@@ -1,0 +1,6 @@
+<p *ngIf="control.hasError('required')" class="validation-message">Pole jest wymagane</p>
+<p *ngIf="control.hasError('minlength') && !control.hasError('required')" class="validation-message">Pole musi zawierać co najmniej {{ control.getError('minlength').requiredLength }} znaków</p>
+<p *ngIf="control.hasError('closedAtBeforeCreatedAt')" class="validation-message">Zamknięcie pytania nie może poprzedzać jego utworzenia</p>
+<p *ngIf="control.hasError('maxlength') && !control.hasError('required')" class="validation-message">Pole musi zawierać co najwyżej {{ control.getError('maxlength').requiredLength }} znaki</p>
+<p *ngIf="control.hasError('usernameUsed')" class="validation-message">Nazwa użytkownika zajęta</p>
+<p *ngIf="control.hasError('passwordRepeatMatch')" class="validation-message">Hasło oraz powtórzone hasło nie są takie same</p>

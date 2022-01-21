@@ -34,6 +34,7 @@ import { ClosedComponent } from './shared/closed/closed.component';
 import { AllQuestionsComponent } from './questions/all-questions/all-questions.component';
 import { UserQuestionsComponent } from './questions/user-questions/user-questions.component';
 import { OpenQuestionsComponent } from './questions/open-questions/open-questions.component';
+import { ValidationMessagesComponent } from './shared/validation-messages/validation-messages.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { OpenQuestionsComponent } from './questions/open-questions/open-question
     ClosedComponent,
     AllQuestionsComponent,
     UserQuestionsComponent,
-    OpenQuestionsComponent
+    OpenQuestionsComponent,
+    ValidationMessagesComponent
   ],
   imports: [
     BrowserModule,

@@ -9,8 +9,7 @@
                 placeholder="Tutaj wpisz skrócony opis pytania" 
                 autofocus>
             </textarea>
-            <p *ngIf="form.submitted && questionEditForm.get('title').hasError('required')" class="validation-message">Tytuł jest wymagany</p>
-            <p *ngIf="form.submitted && questionEditForm.get('title').hasError('minlength') && questionEditForm.get('!title').hasError('required')" class="validation-message">Tytuł musi zawierać co najmniej 10 znaków</p>
+            <app-validation-messages *ngIf="form.submitted" [control]="questionEditForm.get('title')"></app-validation-messages>
         </div>
         <div class="form-group">
             <label class="form-label" for="content-input">Treść Pytania</label>
@@ -19,6 +18,7 @@
                 id="content-input" 
                 placeholder="Tutaj wpisz szczegółowe pytanie wraz z detalami">
             </textarea>
+            <app-validation-messages *ngIf="form.submitted" [control]="questionEditForm.get('content')"></app-validation-messages>
         </div>
         <div class="form-group">
             <label class="form-label" for="date-input">Data utworzenia</label>
@@ -26,7 +26,7 @@
                 id="date-input" 
                 formControlName="createdAt"
                 type="date">
-                <p *ngIf="form.submitted && questionEditForm.get('createdAt').hasError('required')" class="validation-message">Data utworzenia jest wymagana</p>
+                <app-validation-messages *ngIf="form.submitted" [control]="questionEditForm.get('createdAt')"></app-validation-messages>
         </div>
         <div class="form-group">
             <label class="form-label" for="close-date-input">Data zamknięcia</label>
@@ -34,17 +34,17 @@
                 id="close-date-input" 
                 formControlName="closedAt"
                 type="date">
-            <p *ngIf="form.submitted && questionEditForm.get('closedAt').hasError('closedAtBeforeCreatedAt')" class="validation-message">Zamknięcie pytania nie może poprzedzać jego utworzenia</p>
+            <app-validation-messages *ngIf="form.submitted" [control]="questionEditForm.get('closedAt')"></app-validation-messages>
         </div>
         <div class="form-group">
             <label class="form-label" for="author-input">Autor</label>
             <select id="author-input" formControlName="author">
                 <option *ngFor="let user of users" [value]="user">{{ user }}</option>
             </select>
-            <p *ngIf="form.submitted && questionEditForm.get('author').hasError('required')" class="validation-message">Autor jest wymagany</p>
+            <app-validation-messages *ngIf="form.submitted" [control]="questionEditForm.get('author')"></app-validation-messages>
         </div>
         <button type="submit">Zatwierdź</button>
-        <p *ngIf="form.invalid && form.touched" class="validation-message">Nieprawidłowo wypełniony formularz</p>
+        <p *ngIf="form.submitted && form.invalid && form.touched" class="validation-message">Nieprawidłowo wypełniony formularz</p>
         <p *ngIf="form.hasError('unknownValidationError')" class="validation-message">Nieznany błąd walidacji formularza</p>
     </form>
 </div>

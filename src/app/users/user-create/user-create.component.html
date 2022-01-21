@@ -4,10 +4,7 @@
         <div class="form-group">
             <label class="form-label" for="username-input">Nazwa użytkownika</label>
             <input formControlName="username" id="username-input" type="text" autofocus>
-            <p *ngIf="form.submitted && userCreateForm.get('username').hasError('required')" class="validation-message">Nazwa użytkownika jest wymagana</p>
-            <p *ngIf="form.submitted && userCreateForm.get('username').hasError('minlength') && !userCreateForm.get('username').hasError('required')" class="validation-message">Co najmniej 3 znaki</p>
-            <p *ngIf="form.submitted && userCreateForm.get('username').hasError('maxlength') && !userCreateForm.get('username').hasError('required')" class="validation-message">Co najwyżej 20 znaki</p>
-            <p *ngIf="form.submitted && userCreateForm.get('username').hasError('usernameUsed')" class="validation-message">Nazwa użytkownika zajęta</p>
+            <app-validation-messages *ngIf="form.submitted" [control]="userCreateForm.get('username')"></app-validation-messages>
         </div>
         <div class="form-group">
             <label class="form-label" for="password-input">Hasło</label>
@@ -16,9 +13,7 @@
                 type="password" 
                 autofocus
                 formControlName="new-password">
-            <p *ngIf="form.submitted && userCreateForm.get('new-password').hasError('required')" class="validation-message">Hasło jest wymagane</p>
-            <p *ngIf="form.submitted && userCreateForm.get('new-password').hasError('minlength') && !userCreateForm.get('new-password').hasError('required')" class="validation-message">Hasło musi zawierać co najmniej 5 znaków</p>
-            <p *ngIf="form.submitted && userCreateForm.get('new-password').hasError('maxlength') && !userCreateForm.get('new-password').hasError('required')" class="validation-message">Hasło może zawierać co najwyżej 20 znaków</p>
+            <app-validation-messages *ngIf="form.submitted" [control]="userCreateForm.get('new-password')"></app-validation-messages>
         </div>
         <div class="form-group">
             <label class="form-label" for="password-repeat-input">Powtórz Hasło</label>
@@ -27,10 +22,10 @@
                 type="password"
                 formControlName="new-password-repeat"
                 [class.ng-invalid]="userCreateForm.hasError('passwordRepeatMatch')">
-            <p *ngIf="form.submitted && userCreateForm.hasError('passwordRepeatMatch')" class="validation-message">Hasło oraz powtórzone hasło nie są takie same</p>
+            <app-validation-messages *ngIf="form.submitted" [control]="userCreateForm.get('new-password-repeat')"></app-validation-messages>
         </div>
         <button type="Submit">Utwórz konto</button>
-        <p *ngIf="form.invalid" class="validation-message">Nieprawidłowo wypełniony formularz</p>
+        <p *ngIf="form.submitted && form.invalid" class="validation-message">Nieprawidłowo wypełniony formularz</p>
         <p *ngIf="form.hasError('unknownValidationError')" class="validation-message">Nieznany błąd walidacji formularza</p>
     </form>
     <p>Nie posiadasz konta? <a class="link" href="register.html">Zarejestruj się</a></p>
