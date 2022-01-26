@@ -1,18 +1,19 @@
 <div class="container">
     <h2 class="form-header">Zaloguj się</h2>
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" #form="ngForm">
         <div class="form-group">
             <label class="form-label" for="username-input">Nazwa Użytkownika</label>
-            <input id="username-input" type="text" name="username" required minlength="3" maxlength="20" autofocus>
-            <p class="invalid-input-message">Niewłaściwa nazwa użytkownika</p>
+            <input id="username-input" type="text" formControlName="username" autofocus>
+            <app-validation-messages *ngIf="form.submitted" [control]="loginForm.get('username')"></app-validation-messages>
         </div>
         <div class="form-group">
             <label class="form-label" for="password-input">Hasło</label>
-            <input id="password-input" type="password" name="password" required minlength="3" maxlength="20">
-            <p class="invalid-input-message">Niewłaściwe hasło</p>
+            <input id="password-input" type="password" formControlName="password">
+            <app-validation-messages *ngIf="form.submitted" [control]="loginForm.get('password')"></app-validation-messages>
         </div>
         <button type="Submit">Zaloguj</button>
-        <p class="invalid-form-message">Nieprawidłowe dane logowania</p>
+        <p *ngIf="form.submitted && form.invalid" class="validation-message">Nieprawidłowo wypełniony formularz</p>
+        <p *ngIf="form.hasError('unknownValidationError')" class="validation-message">Nieznany błąd walidacji formularza</p>
     </form>
-    <p>Nie posiadasz konta? <a class="link" href="register.html">Zarejestruj się</a></p>
+    <p>Nie posiadasz konta? <a class="link" [routerLink]="">Zarejestruj się</a></p>
 </div>

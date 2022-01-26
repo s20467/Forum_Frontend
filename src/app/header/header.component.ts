@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../shared/users.service';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   isMenuOpen = false;
+  isLoggedIn: boolean = false;
 
-  constructor() { }
+  constructor(public usersService: UsersService) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.usersService.isLoggedIn();
+    this.usersService.authenticationStatusChanged.subscribe((isLoggedIn: boolean) => {
+      this.isLoggedIn = isLoggedIn;
+    });
   }
 
   toggleOpen(){

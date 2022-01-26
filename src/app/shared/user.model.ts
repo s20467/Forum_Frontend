@@ -11,4 +11,5 @@ export class User{
     upVotedAnswers: number[] | Answer[];
     downVotedQuestions: number[] | Question[];
     downVotedAnswers: number[] | Answer[];
+    authorities: string[];
 }

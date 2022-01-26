@@ -20,59 +20,95 @@ export class QuestionsService {
   constructor(private http: HttpClient) {}
 
   getQuestions(){
-    return this.http.get<Question[]>(this.UrlBase + 'questions');
+    return this.http.get<Question[]>(this.UrlBase + 'api/questions');
   }
   
   getQuestionById(questionId: number){
-    return this.http.get<Question>(this.UrlBase + 'questions/' + questionId);
+    return this.http.get<Question>(this.UrlBase + 'api/questions/' + questionId);
   }
 
   getAnswerById(answerId: number){
-    return this.http.get<Answer>(this.UrlBase + 'answers/' + answerId);
+    return this.http.get<Answer>(this.UrlBase + 'api/answers/' + answerId);
   }
 
   getAnswersByQuestionsId(questionId: number){
-    return this.http.get<Answer[]>(this.UrlBase + "questions/" + questionId + "/answers");
+    return this.http.get<Answer[]>(this.UrlBase + "api/questions/" + questionId + "/answers");
   }
 
   getQuestionsByUser(username: string){
-    return this.http.get<Question[]>(this.UrlBase + "questions/get-by-author/" + username);
+    return this.http.get<Question[]>(this.UrlBase + "api/questions/get-by-author/" + username);
   }
 
   getOpenQuestions(){
-    return this.http.get<Question[]>(this.UrlBase + "questions/not-closed");
+    return this.http.get<Question[]>(this.UrlBase + "api/questions/not-closed");
+  }
+
+  getQuestionsAnsweredByUser(username: string){
+    return this.http.get<Question[]>(this.UrlBase + "api/questions/answered-by/" + username);
   }
 
   createQuestion(question: Question){
-    return this.http.post<Question>(this.UrlBase + 'questions', question);
+    return this.http.post<Question>(this.UrlBase + 'api/questions', question);
   }
 
   createAnswer(questionId: number, answer: Answer){
-    return this.http.post<Answer>(this.UrlBase + 'questions/' + questionId + '/give-answer', answer);
+    return this.http.post<Answer>(this.UrlBase + 'api/questions/' + questionId + '/give-answer', answer);
   }
 
   updateQuestion(questionId: number, question: Question){
-    return this.http.patch<Question>(this.UrlBase + 'questions/' + questionId, question);
+    return this.http.patch<Question>(this.UrlBase + 'api/questions/' + questionId, question);
   }
 
   updateAnswer(answerId: number, answer: Answer){
-    return this.http.patch<Answer>(this.UrlBase + 'answers/' + answerId, answer);
+    return this.http.patch<Answer>(this.UrlBase + 'api/answers/' + answerId, answer);
   }
 
   closeQuestion(questionId: number){
-    return this.http.post<Question>(this.UrlBase + 'questions/' + questionId + '/close', {});
+    return this.http.post<Question>(this.UrlBase + 'api/questions/' + questionId + '/close', {});
   }
 
   openQuestion(questionId: number){
-    return this.http.post<Question>(this.UrlBase + 'questions/' + questionId + '/open', {});
+    return this.http.post<Question>(this.UrlBase + 'api/questions/' + questionId + '/open', {});
   }
 
   deleteQuestion(questionId: number){
-    return this.http.delete<Question>(this.UrlBase + "questions/" + questionId);
+    return this.http.delete<Question>(this.UrlBase + "api/questions/" + questionId);
   }
 
   deleteAnswer(answerId: number){
-    return this.http.delete<Answer>(this.UrlBase + "answers/" + answerId);
+    return this.http.delete<Answer>(this.UrlBase + "api/answers/" + answerId);
+  }
+
+  upVoteQuestion(questionId: number){
+    return this.http.get<Question>(this.UrlBase + "api/questions/" + questionId + "/upvote");
+  }
+
+  unUpVoteQuestion(questionId: number){
+    return this.http.get<Question>(this.UrlBase + "api/questions/" + questionId + "/unupvote");
+  }
+
+  downVoteQuestion(questionId: number){
+    return this.http.get<Question>(this.UrlBase + "api/questions/" + questionId + "/downvote");
+  }
+
+  unDownVoteQuestion(questionId: number){
+    return this.http.get<Question>(this.UrlBase + "api/questions/" + questionId + "/undownvote");
+  }
+
+  upVoteAnswer(answerId: number){
+    return this.http.get<Answer>(this.UrlBase + "api/answers/" + answerId + "/upvote");
+  }
+
+  unUpVoteAnswer(answerId: number){
+    return this.http.get<Answer>(this.UrlBase + "api/answers/" + answerId + "/unupvote");
+  }
+
+  downVoteAnswer(answerId: number){
+    return this.http.get<Answer>(this.UrlBase + "api/answers/" + answerId + "/downvote");
+  }
+
+  unDownVoteAnswer(answerId: number){
+    return this.http.get<Answer>(this.UrlBase + "api/answers/" + answerId + "/undownvote");
   }
 
   emitQuestionsChanged(){

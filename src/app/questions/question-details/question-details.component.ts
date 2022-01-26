@@ -4,6 +4,7 @@ import { Answer } from 'src/app/shared/answer.model';
 import { Question } from 'src/app/shared/question.model';
 import { QuestionsService } from 'src/app/shared/questions.service';
 import { Location } from '@angular/common';
+import { UsersService } from 'src/app/shared/users.service';
 
 @Component({
   selector: 'app-question-details',
@@ -14,7 +15,7 @@ export class QuestionDetailsComponent implements OnInit {
 
   question: Question;
 
-  constructor(private questionService: QuestionsService, private route: ActivatedRoute, private router: Router, private location: Location) { }
+  constructor(private questionService: QuestionsService, private usersService: UsersService, private route: ActivatedRoute, private router: Router, private location: Location) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -44,4 +45,51 @@ export class QuestionDetailsComponent implements OnInit {
       this.questionService.emitQuestionsChanged();
     });
   }
+
+  upVoteQuestion(){
+    if(this.usersService.isLoggedIn())
+      if(!this.question.upVotes.map((user) => {return user as string}).includes(this.usersService.currentUser.username)){
+        this.questionService.upVoteQuestion(this.question.id).subscribe((question: Question) => {
+          this.question = question;
+          this.questionService.emitQuestionsChanged();
+        });
+      }
+      else{
+        this.questionService.unUpVoteQuestion(this.question.id).subscribe((question: Question) => {
+          this.question = question;
+          this.questionService.emitQuestionsChanged();
+        });
+      }
+    else{
+      this.router.navigate(['/login']);
+    }
+  }
+
+  downVoteQuestion(){
+    if(this.usersService.isLoggedIn())
+      if(!this.question.downVotes.map((user) => {return user as string}).includes(this.usersService.currentUser.username)){
+        this.questionService.downVoteQuestion(this.question.id).subscribe((question: Question) => {
+          this.question = question;
+          this.questionService.emitQuestionsChanged();
+        });
+      }
+      else{
+        this.questionService.unDownVoteQuestion(this.question.id).subscribe((question: Question) => {
+          this.question = question;
+          this.questionService.emitQuestionsChanged();
+        });
+      }
+    else{
+      this.router.navigate(['/login']);
+    }
+  }
+
+  isUpVoting(){
+    return this.question.upVotes.map((user) => {return user as string}).includes(this.usersService.currentUser.username);
+  }
+
+  isDownVoting(){
+    return this.question.downVotes.map((user) => {return user as string}).includes(this.usersService.currentUser.username);
+  }
+
 }

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AllQuestionsComponent } from './questions/all-questions/all-questions.component';
+import { MyAnswersComponent } from './questions/my-answers/my-answers.component';
+import { MyQuestionsComponent } from './questions/my-questions/my-questions.component';
 import { OpenQuestionsComponent } from './questions/open-questions/open-questions.component';
 import { AnswerEditComponent } from './questions/question-details/answers/answer-edit/answer-edit.component';
 import { AnswerListComponent } from './questions/question-details/answers/answer-list/answer-list.component';
@@ -22,6 +24,8 @@ const routes: Routes = [
     {path: 'all', component: AllQuestionsComponent},
     {path: 'open', component: OpenQuestionsComponent},
     {path: 'user-questions/:username', component: UserQuestionsComponent},
+    {path: 'my-questions', component: MyQuestionsComponent},
+    {path: 'my-answers', component: MyAnswersComponent},
     {path: '', redirectTo: 'all', pathMatch: 'full'},
     {path: ':questionId/edit', component: QuestionEditComponent},
     {path: ':questionId/answers', component: QuestionDetailsComponent, children:[

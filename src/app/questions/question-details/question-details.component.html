@@ -9,14 +9,14 @@
     <div class="question-with-answers-component">
         <div class="question-details-component">
             <div class="voting-component">
-                <button class="transparent-button">
-                    <svg class="upvote-icon" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">
+                <button class="transparent-button" (click)="upVoteQuestion()">
+                    <svg class="upvote-icon" [class.active-vote]="isUpVoting()" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">
                         <polyline points="48 160 128 80 208 160" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
                     </svg>
                 </button>
                 {{ question?.upVotes.length - question?.downVotes.length }}
-                <button class="transparent-button">
-                    <svg class="downvote-icon" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">
+                <button class="transparent-button" (click)="downVoteQuestion()">
+                    <svg class="downvote-icon" [class.active-vote]="isDownVoting()" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">
                         <polyline points="208 96 128 176 48 96" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
                     </svg>
                 </button>

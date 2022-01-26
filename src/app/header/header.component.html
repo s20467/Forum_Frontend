@@ -5,7 +5,8 @@
             <ul class="standard-nav-menu">
                 <li><a [routerLink]="['/questions']">Strona główna</a></li>
                 <li><a [routerLink]="['/users']">Użytkownicy</a></li>
-                <li><a [routerLink]="['/login']">Zaloguj się</a></li>
+                <li *ngIf="!isLoggedIn"><a [routerLink]="['/login']">Zaloguj się</a></li>
+                <li *ngIf="isLoggedIn"><a (click)="this.usersService.logout()">Wyloguj się</a></li>
             </ul>
         </nav>
         <button (click)="toggleOpen()" class="header-nav-button transparent-button">
@@ -20,7 +21,8 @@
         <ul class="responsive-nav-menu" (click)="toggleOpen()">
             <li><a [routerLink]="['/questions']">Strona główna</a></li>
             <li><a [routerLink]="['/users']">Użytkownicy</a></li>
-            <li><a [routerLink]="['/login']">Zaloguj się</a></li>
+            <li *ngIf="!isLoggedIn"><a [routerLink]="['/login']">Zaloguj się</a></li>
+            <li *ngIf="isLoggedIn"><a (click)="this.usersService.logout()">Wyloguj się</a></li>
         </ul>
     </nav>
 </header>

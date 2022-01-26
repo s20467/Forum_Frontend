@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +35,10 @@ import { AllQuestionsComponent } from './questions/all-questions/all-questions.c
 import { UserQuestionsComponent } from './questions/user-questions/user-questions.component';
 import { OpenQuestionsComponent } from './questions/open-questions/open-questions.component';
 import { ValidationMessagesComponent } from './shared/validation-messages/validation-messages.component';
+import { JwtInterceptor } from './shared/jwt-interceptor.service';
+import { JwtRefreshInterceptor } from './shared/jwt-refresh-interceptor.service';
+import { MyQuestionsComponent } from './questions/my-questions/my-questions.component';
+import { MyAnswersComponent } from './questions/my-answers/my-answers.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +72,9 @@ import { ValidationMessagesComponent } from './shared/validation-messages/valida
     AllQuestionsComponent,
     UserQuestionsComponent,
     OpenQuestionsComponent,
-    ValidationMessagesComponent
+    ValidationMessagesComponent,
+    MyQuestionsComponent,
+    MyAnswersComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +83,16 @@ import { ValidationMessagesComponent } from './shared/validation-messages/valida
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, 
+      useClass: JwtRefreshInterceptor, 
+      multi: true
+    },
+    {provide: HTTP_INTERCEPTORS, 
+      useClass: JwtInterceptor, 
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
