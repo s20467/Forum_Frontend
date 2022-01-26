@@ -1,4 +1,4 @@
-<div class="form-container">
+<div *ngIf="this.usersService.isAdmin()" class="form-container">
     <h2 class="form-header">Utwórz Pytanie - Admin</h2>
     <form [formGroup]="questionEditForm" (ngSubmit)="onSubmit()" #form="ngForm">
         <div class="form-group">
@@ -42,6 +42,34 @@
                 <option *ngFor="let user of users" [value]="user">{{ user }}</option>
             </select>
             <app-validation-messages *ngIf="form.submitted" [control]="questionEditForm.get('author')"></app-validation-messages>
+        </div>
+        <button type="submit">Zatwierdź</button>
+        <p *ngIf="form.submitted && form.invalid && form.touched" class="validation-message">Nieprawidłowo wypełniony formularz</p>
+        <p *ngIf="form.hasError('unknownValidationError')" class="validation-message">Nieznany błąd walidacji formularza</p>
+    </form>
+</div>
+
+<div *ngIf="!this.usersService.isAdmin()" class="form-container">
+    <h2 class="form-header">Utwórz Pytanie</h2>
+    <form [formGroup]="questionEditForm" (ngSubmit)="onSubmit()" #form="ngForm">
+        <div class="form-group">
+            <label class="form-label" for="title-input">Tytuł Pytania</label>
+            <textarea
+                formControlName="title"
+                id="title-input" 
+                placeholder="Tutaj wpisz skrócony opis pytania" 
+                autofocus>
+            </textarea>
+            <app-validation-messages *ngIf="form.submitted" [control]="questionEditForm.get('title')"></app-validation-messages>
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="content-input">Treść Pytania</label>
+            <textarea 
+                formControlName="content" 
+                id="content-input" 
+                placeholder="Tutaj wpisz szczegółowe pytanie wraz z detalami">
+            </textarea>
+            <app-validation-messages *ngIf="form.submitted" [control]="questionEditForm.get('content')"></app-validation-messages>
         </div>
         <button type="submit">Zatwierdź</button>
         <p *ngIf="form.submitted && form.invalid && form.touched" class="validation-message">Nieprawidłowo wypełniony formularz</p>

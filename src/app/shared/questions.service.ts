@@ -47,16 +47,32 @@ export class QuestionsService {
     return this.http.get<Question[]>(this.UrlBase + "api/questions/answered-by/" + username);
   }
 
+  createQuestionAdmin(question: Question){
+    return this.http.post<Question>(this.UrlBase + 'api/questions/admin', question);
+  }
+
   createQuestion(question: Question){
     return this.http.post<Question>(this.UrlBase + 'api/questions', question);
+  }
+
+  createAnswerAdmin(questionId: number, answer: Answer){
+    return this.http.post<Answer>(this.UrlBase + 'api/questions/' + questionId + '/give-answer/admin', answer);
   }
 
   createAnswer(questionId: number, answer: Answer){
     return this.http.post<Answer>(this.UrlBase + 'api/questions/' + questionId + '/give-answer', answer);
   }
 
+  updateQuestionAdmin(questionId: number, question: Question){
+    return this.http.patch<Question>(this.UrlBase + 'api/questions/' + questionId + '/admin', question);
+  }
+
   updateQuestion(questionId: number, question: Question){
     return this.http.patch<Question>(this.UrlBase + 'api/questions/' + questionId, question);
+  }
+
+  updateAnswerAdmin(answerId: number, answer: Answer){
+    return this.http.patch<Answer>(this.UrlBase + 'api/answers/' + answerId + '/admin', answer);
   }
 
   updateAnswer(answerId: number, answer: Answer){

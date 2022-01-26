@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { User } from './user.model';
 import jwt_decode from 'jwt-decode'
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 interface AuthTokensResponse{
   access_token: string;
@@ -23,7 +24,7 @@ export class UsersService {
 
   currentUser: User;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     let access_token: string = localStorage.getItem('forum_access_token');
     if(access_token){
       let decodedJwt = jwt_decode(access_token);
@@ -84,10 +85,15 @@ export class UsersService {
     localStorage.removeItem("forum_access_token");
     localStorage.removeItem("forum_refresh_token");
     this.emitAuthenticationStatusChanged();
+    this.router.navigate(['/'])
   }
 
   isLoggedIn(){
-      return !!this.currentUser;
+    return !!this.currentUser;
+  }
+
+  isAdmin(){
+    return this.isLoggedIn() && (this.currentUser.authorities.includes('ROLE_ADMIN'));
   }
 
   emitAuthenticationStatusChanged(){

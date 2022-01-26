@@ -85,11 +85,11 @@ export class QuestionDetailsComponent implements OnInit {
   }
 
   isUpVoting(){
-    return this.question.upVotes.map((user) => {return user as string}).includes(this.usersService.currentUser.username);
+    return this.usersService.isLoggedIn() && this.question?.upVotes.map((user) => {return user as string}).includes(this.usersService.currentUser.username);
   }
 
   isDownVoting(){
-    return this.question.downVotes.map((user) => {return user as string}).includes(this.usersService.currentUser.username);
+    return this.usersService.isLoggedIn() && this.question?.downVotes.map((user) => {return user as string}).includes(this.usersService.currentUser.username);
   }
 
 }
