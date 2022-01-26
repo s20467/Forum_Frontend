@@ -25,6 +25,10 @@ export class QuestionDetailsComponent implements OnInit {
     });
   }
 
+  isQuestionOwnerOrAdmin(){
+    return this.usersService.isAdmin() || (this.usersService.isLoggedIn() && this.usersService.currentUser.username == this.question?.author);
+  }
+
   toggleCloseQuestion(){
     if(this.question.closedAt == null)
       this.questionService.closeQuestion(this.question.id).subscribe((question: Question) => {
@@ -48,7 +52,7 @@ export class QuestionDetailsComponent implements OnInit {
 
   upVoteQuestion(){
     if(this.usersService.isLoggedIn())
-      if(!this.question.upVotes.map((user) => {return user as string}).includes(this.usersService.currentUser.username)){
+      if(!this.isUpVoting()){
         this.questionService.upVoteQuestion(this.question.id).subscribe((question: Question) => {
           this.question = question;
           this.questionService.emitQuestionsChanged();
@@ -67,7 +71,7 @@ export class QuestionDetailsComponent implements OnInit {
 
   downVoteQuestion(){
     if(this.usersService.isLoggedIn())
-      if(!this.question.downVotes.map((user) => {return user as string}).includes(this.usersService.currentUser.username)){
+      if(!this.isDownVoting()){
         this.questionService.downVoteQuestion(this.question.id).subscribe((question: Question) => {
           this.question = question;
           this.questionService.emitQuestionsChanged();

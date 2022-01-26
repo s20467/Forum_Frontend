@@ -23,17 +23,17 @@
     border-radius: 100px;
 }
 
-.upvote-icon:hover, .downvote-icon:hover{
+.upvote-icon *, .downvote-icon *{
+    stroke: var(--main-shade-3);
+}
+
+.upvote-icon:hover, .downvote-icon:hover, .active-vote{
     background-color: var(--main-shade-3);
     border-radius: 100px;
 }
 
-.upvote-icon:hover *, .downvote-icon:hover *{
+.upvote-icon:hover *, .downvote-icon:hover *, .active-vote *{
     stroke: var(--main-tint-1)
-}
-
-.upvote-icon *, .downvote-icon *{
-    stroke: var(--main-shade-3);
 }
 
 .upvote-icon *, .downvote-icon *{

@@ -24,21 +24,26 @@ export class AnswerEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router, 
     private questionsService: QuestionsService, 
-    private usersService: UsersService) {}
+    public usersService: UsersService) {
+      if(!this.usersService.isLoggedIn())
+      this.router.navigate(['/login']);
+    }
 
     ngOnInit(): void {
-      this.usersService.getUsers()
-        .pipe(
-          map((users: User[]) => {
-            return users.map((user: User) => {
-              return user.username;
+      if(this.usersService.isAdmin()){
+        this.usersService.getUsers()
+          .pipe(
+            map((users: User[]) => {
+              return users.map((user: User) => {
+                return user.username;
+              })
             })
-          })
-        )
-        .subscribe((users: string[]) => {
-          this.users = users;
-        }
-      );
+          )
+          .subscribe((users: string[]) => {
+            this.users = users;
+          }
+        );
+      }
       this.questionId = +this.route.snapshot.parent.params['questionId'];
       let answerId: number = +this.route.snapshot.params['answerId'];
       if(answerId){
@@ -50,7 +55,33 @@ export class AnswerEditComponent implements OnInit {
     }
   
     onSubmit(form: NgForm){
-      if(form.valid){
+      if(this.usersService.isAdmin()){
+        if(form.valid){
+          if(!this.isEditMode){
+            this.questionsService.createAnswerAdmin(this.questionId, form.value).subscribe(
+              (response) => {
+                this.questionsService.emitAnswersChanged();
+                this.router.navigate(['../..'], {relativeTo: this.route});
+              },
+              (error: Error) => {
+                form.form.setErrors({'unknownValidationError': true});
+              }
+            );
+          }
+          else{
+            this.questionsService.updateAnswerAdmin(this.answer.id, form.value).subscribe(
+              (response) => {
+                this.questionsService.emitAnswersChanged();
+                this.router.navigate(['../..'], {relativeTo: this.route});
+              },
+              (error: Error) => {
+                form.form.setErrors({'unknownValidationError': true});
+              }
+            );
+          }
+        }
+      }
+      else{
         if(!this.isEditMode){
           this.questionsService.createAnswer(this.questionId, form.value).subscribe(
             (response) => {

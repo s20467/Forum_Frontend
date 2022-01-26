@@ -1,18 +1,18 @@
 <div class="answer-component">
     <div class="voting-component">
-        <button class="transparent-button">
-            <svg class="upvote-icon" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">
+        <button class="transparent-button" (click)="upVoteAnswer()">
+            <svg class="upvote-icon" [class.active-vote]="isUpVoting()" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">
                 <polyline points="48 160 128 80 208 160" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
             </svg>
         </button>
         {{ answer.upVotes.length - answer.downVotes.length }}
-        <button class="transparent-button">
-            <svg class="downvote-icon" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">
+        <button class="transparent-button" (click)="downVoteAnswer()">
+            <svg class="downvote-icon" [class.active-vote]="isDownVoting()" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">
                 <polyline points="208 96 128 176 48 96" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
             </svg>
         </button>
     </div>
-    <div class="more-options-box">
+    <div *ngIf="isAnswerOwnerOrAdmin()" class="more-options-box">
         <app-edit-button [routerLink]="[answer.id, 'edit']"></app-edit-button>
         <app-delete-button (click)="deleteAnswer()"></app-delete-button>
     </div>

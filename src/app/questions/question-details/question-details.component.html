@@ -22,7 +22,7 @@
                 </button>
             </div>
             <div class="question-data">
-                <div class="more-options-box">
+                <div *ngIf="isQuestionOwnerOrAdmin()" class="more-options-box">
                     <span *ngIf="question?.closedAt != null" class="question-closed-info">wątek zamknięty</span>
                     <app-lock-button (click)="toggleCloseQuestion()" [is-locked]="question?.closedAt === null"></app-lock-button>
                     <a [routerLink]="'../edit'"><app-edit-button></app-edit-button></a>
