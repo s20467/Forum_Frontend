@@ -1,7 +1,7 @@
 <div class="container">
     <div class="users-header">
         <h2>Użytkownicy</h2>
-        <a [routerLink]="['../new']"><app-add-button>Dodaj</app-add-button></a>
+        <a *ngIf="usersService.isAdmin()" [routerLink]="['../new']"><app-add-button>Dodaj</app-add-button></a>
     </div>
     <app-user-list-item *ngFor="let user of users" [user]="user"></app-user-list-item>
 </div>

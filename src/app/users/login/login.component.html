@@ -15,5 +15,5 @@
         <p *ngIf="form.submitted && form.invalid" class="validation-message">Nieprawidłowo wypełniony formularz</p>
         <p *ngIf="form.hasError('unknownValidationError')" class="validation-message">Nieznany błąd walidacji formularza</p>
     </form>
-    <p>Nie posiadasz konta? <a class="link" [routerLink]="">Zarejestruj się</a></p>
+    <p>Nie posiadasz konta? <a class="link" [routerLink]="['/users', 'register']">Zarejestruj się</a></p>
 </div>
