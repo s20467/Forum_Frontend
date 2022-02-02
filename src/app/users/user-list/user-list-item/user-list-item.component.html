@@ -1,16 +1,16 @@
 <div *ngIf="!isEditMode" class="user-component">
     <span class="username">{{ user.username }}</span>
-    <app-questions-button [routerLink]="['/questions', 'user-questions', user.username]">Wyświetl pytania</app-questions-button>
-    <app-edit-button *ngIf="isQuestionOwnerOrAdmin()" (click)="onToggleOnEditMode()">Edytuj nazwę</app-edit-button>
-    <app-password-button *ngIf="isQuestionOwnerOrAdmin()" [routerLink]="['..', user.username, 'change-password']">Edytuj hasło</app-password-button>
-    <app-delete-button *ngIf="isQuestionOwnerOrAdmin()" (click)="deleteUser()">Usuń</app-delete-button>
+    <app-questions-button [routerLink]="['/questions', 'user-questions', user.username]">{{ 'Show questions' | translate }}</app-questions-button>
+    <app-edit-button *ngIf="isQuestionOwnerOrAdmin()" (click)="onToggleOnEditMode()">{{ 'Edit username' | translate }}</app-edit-button>
+    <app-password-button *ngIf="isQuestionOwnerOrAdmin()" [routerLink]="['..', user.username, 'change-password']">{{ 'Edit password' | translate }}</app-password-button>
+    <app-delete-button *ngIf="isQuestionOwnerOrAdmin()" (click)="deleteUser()">{{ 'Delete' | translate }}</app-delete-button>
 </div>
 <div *ngIf="isEditMode" class="user-component">
     <form class="edit-username-form" [formGroup]="usernameEditForm" (ngSubmit)="onSubmit()" #form="ngForm">
         <div class="input-with-validation-messages">
             <input formControlName="username" id="username-input" type="text" autofocus>
             <app-validation-messages *ngIf="form.submitted" [control]="usernameEditForm.get('username')"></app-validation-messages>
-            <p *ngIf="form.hasError('unknownValidationError')" class="validation-message">Nieznany błąd walidacji formularza</p>
+            <p *ngIf="form.hasError('unknownValidationError')" class="validation-message">{{ 'Unknown form validation error' | translate }}</p>
         </div>
         <button class="transparent-button confirm-username-button" type="submit">
             <svg class="confirm-form-icon" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">

@@ -1,9 +1,9 @@
 <div class="main-content">
     <div class="answers-header">
-        <h2>Odpowiedzi</h2>
+        <h2>{{ 'Answers' | translate }}</h2>
         <div>
             <app-closed *ngIf="question?.closedAt != null"></app-closed>
-            <a [routerLink]="['new']"><app-add-button *ngIf="question?.closedAt == null">Dodaj</app-add-button></a>
+            <a [routerLink]="['new']"><app-add-button *ngIf="question?.closedAt == null">{{ 'Add' | translate }}</app-add-button></a>
         </div>
     </div>
     <div class="question-with-answers-component">
@@ -23,7 +23,7 @@
             </div>
             <div class="question-data">
                 <div *ngIf="isQuestionOwnerOrAdmin()" class="more-options-box">
-                    <span *ngIf="question?.closedAt != null" class="question-closed-info">wątek zamknięty</span>
+                    <span *ngIf="question?.closedAt != null" class="question-closed-info">{{ 'Question closed' | translate }}</span>
                     <app-lock-button (click)="toggleCloseQuestion()" [is-locked]="question?.closedAt === null"></app-lock-button>
                     <a [routerLink]="'../edit'"><app-edit-button></app-edit-button></a>
                     <app-delete-button (click)="deleteQuestion()"></app-delete-button>

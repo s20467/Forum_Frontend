@@ -1,6 +1,6 @@
-<p *ngIf="control.hasError('required')" class="validation-message">Pole jest wymagane</p>
-<p *ngIf="control.hasError('minlength') && !control.hasError('required')" class="validation-message">Pole musi zawierać co najmniej {{ control.getError('minlength').requiredLength }} znaków</p>
-<p *ngIf="control.hasError('closedAtBeforeCreatedAt')" class="validation-message">Zamknięcie pytania nie może poprzedzać jego utworzenia</p>
-<p *ngIf="control.hasError('maxlength') && !control.hasError('required')" class="validation-message">Pole musi zawierać co najwyżej {{ control.getError('maxlength').requiredLength }} znaki</p>
-<p *ngIf="control.hasError('usernameUsed')" class="validation-message">Nazwa użytkownika zajęta</p>
-<p *ngIf="control.hasError('passwordRepeatMatch')" class="validation-message">Hasło oraz powtórzone hasło nie są takie same</p>
+<p *ngIf="control.hasError('required')" class="validation-message">{{ 'Field is required' | translate }}</p>
+<p *ngIf="control.hasError('minlength') && !control.hasError('required')" class="validation-message">{{ 'Minimum number of characters' | translate }}: {{ control.getError('minlength').requiredLength }}</p>
+<p *ngIf="control.hasError('closedAtBeforeCreatedAt')" class="validation-message">{{ 'Closing date cannot be smaller than creation date' | translate }}</p>
+<p *ngIf="control.hasError('maxlength') && !control.hasError('required')" class="validation-message">{{ 'Maximum number of characters' | translate }}: {{ control.getError('maxlength').requiredLength }}</p>
+<p *ngIf="control.hasError('usernameUsed')" class="validation-message">{{ 'Username already taken' | translate }}</p>
+<p *ngIf="control.hasError('passwordRepeatMatch')" class="validation-message">{{ 'Password and repeated password are not the same' | translate }}</p>

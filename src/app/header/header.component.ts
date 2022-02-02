@@ -11,9 +11,13 @@ export class HeaderComponent implements OnInit {
   isMenuOpen = false;
   isLoggedIn: boolean = false;
 
+  lang;
+
   constructor(public usersService: UsersService) { }
 
   ngOnInit(): void {
+    this.lang = localStorage.getItem('lang') || 'en';
+
     this.isLoggedIn = this.usersService.isLoggedIn();
     this.usersService.authenticationStatusChanged.subscribe((isLoggedIn: boolean) => {
       this.isLoggedIn = isLoggedIn;
@@ -22,6 +26,11 @@ export class HeaderComponent implements OnInit {
 
   toggleOpen(){
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  changeLang(lang){
+    localStorage.setItem('lang', lang);
+    window.location.reload();
   }
 
 }

@@ -1,27 +1,25 @@
 <div *ngIf="this.usersService.isAdmin()" class="form-container">
-    <h2 class="form-header">Utwórz Pytanie - Admin</h2>
+    <h2 class="form-header">{{ 'Create a question' | translate }}</h2>
     <form [formGroup]="questionEditForm" (ngSubmit)="onSubmit()" #form="ngForm">
         <div class="form-group">
-            <label class="form-label" for="title-input">Tytuł Pytania</label>
+            <label class="form-label" for="title-input">{{ 'Question title' | translate }}</label>
             <textarea
                 formControlName="title"
                 id="title-input" 
-                placeholder="Tutaj wpisz skrócony opis pytania" 
                 autofocus>
             </textarea>
             <app-validation-messages *ngIf="form.submitted" [control]="questionEditForm.get('title')"></app-validation-messages>
         </div>
         <div class="form-group">
-            <label class="form-label" for="content-input">Treść Pytania</label>
+            <label class="form-label" for="content-input">{{ 'Question content' | translate }}</label>
             <textarea 
                 formControlName="content" 
-                id="content-input" 
-                placeholder="Tutaj wpisz szczegółowe pytanie wraz z detalami">
+                id="content-input" >
             </textarea>
             <app-validation-messages *ngIf="form.submitted" [control]="questionEditForm.get('content')"></app-validation-messages>
         </div>
         <div class="form-group">
-            <label class="form-label" for="date-input">Data utworzenia</label>
+            <label class="form-label" for="date-input">{{ 'Creation date' | translate }}</label>
             <input 
                 id="date-input" 
                 formControlName="createdAt"
@@ -29,7 +27,7 @@
                 <app-validation-messages *ngIf="form.submitted" [control]="questionEditForm.get('createdAt')"></app-validation-messages>
         </div>
         <div class="form-group">
-            <label class="form-label" for="close-date-input">Data zamknięcia</label>
+            <label class="form-label" for="close-date-input">{{ 'Closing date' | translate }}</label>
             <input
                 id="close-date-input" 
                 formControlName="closedAt"
@@ -37,42 +35,40 @@
             <app-validation-messages *ngIf="form.submitted" [control]="questionEditForm.get('closedAt')"></app-validation-messages>
         </div>
         <div class="form-group">
-            <label class="form-label" for="author-input">Autor</label>
+            <label class="form-label" for="author-input">{{ 'Author' | translate }}</label>
             <select id="author-input" formControlName="author">
                 <option *ngFor="let user of users" [value]="user">{{ user }}</option>
             </select>
             <app-validation-messages *ngIf="form.submitted" [control]="questionEditForm.get('author')"></app-validation-messages>
         </div>
-        <button type="submit">Zatwierdź</button>
-        <p *ngIf="form.submitted && form.invalid && form.touched" class="validation-message">Nieprawidłowo wypełniony formularz</p>
-        <p *ngIf="form.hasError('unknownValidationError')" class="validation-message">Nieznany błąd walidacji formularza</p>
+        <button type="submit">{{ 'Confirm' | translate }}</button>
+        <p *ngIf="form.submitted && form.invalid && form.touched" class="validation-message">{{ 'Invalid form content' | translate }}</p>
+        <p *ngIf="form.hasError('unknownValidationError')" class="validation-message">{{ 'Unknown form validation error' | translate }}</p>
     </form>
 </div>
 
 <div *ngIf="!this.usersService.isAdmin()" class="form-container">
-    <h2 class="form-header">Utwórz Pytanie</h2>
+    <h2 class="form-header">{{ 'Create a question' | translate }}</h2>
     <form [formGroup]="questionEditForm" (ngSubmit)="onSubmit()" #form="ngForm">
         <div class="form-group">
-            <label class="form-label" for="title-input">Tytuł Pytania</label>
+            <label class="form-label" for="title-input">{{ 'Question title' | translate }}</label>
             <textarea
                 formControlName="title"
                 id="title-input" 
-                placeholder="Tutaj wpisz skrócony opis pytania" 
                 autofocus>
             </textarea>
             <app-validation-messages *ngIf="form.submitted" [control]="questionEditForm.get('title')"></app-validation-messages>
         </div>
         <div class="form-group">
-            <label class="form-label" for="content-input">Treść Pytania</label>
+            <label class="form-label" for="content-input">{{ 'Question content' | translate }}</label>
             <textarea 
                 formControlName="content" 
-                id="content-input" 
-                placeholder="Tutaj wpisz szczegółowe pytanie wraz z detalami">
+                id="content-input" >
             </textarea>
             <app-validation-messages *ngIf="form.submitted" [control]="questionEditForm.get('content')"></app-validation-messages>
         </div>
-        <button type="submit">Zatwierdź</button>
-        <p *ngIf="form.submitted && form.invalid && form.touched" class="validation-message">Nieprawidłowo wypełniony formularz</p>
-        <p *ngIf="form.hasError('unknownValidationError')" class="validation-message">Nieznany błąd walidacji formularza</p>
+        <button type="submit">{{ 'Confirm' | translate }}</button>
+        <p *ngIf="form.submitted && form.invalid && form.touched" class="validation-message">{{ 'Invalid form content' | translate }}</p>
+        <p *ngIf="form.hasError('unknownValidationError')" class="validation-message">{{ 'Unknown form validation error' | translate }}</p>
     </form>
 </div>

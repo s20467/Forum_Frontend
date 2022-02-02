@@ -1,13 +1,12 @@
 <div *ngIf="this.usersService.isAdmin()" class="answer-component">
     <form (ngSubmit)="onSubmit(form)" #form="ngForm">
         <div class="form-group">
-            <label class="form-label" for="content-input">Twoja Odpowiedź</label>
+            <label class="form-label" for="content-input">{{ 'Your answer' | translate }}</label>
             <textarea 
                 name="content" 
                 id="content-input" 
                 required 
                 minlength="10"
-                placeholder="Tutaj wpisz swoją odpowiedź na pytanie" 
                 autofocus
                 [ngModel]="answer.content"
                 #content="ngModel">
@@ -15,7 +14,7 @@
             <app-validation-messages *ngIf="form.submitted" [control]="content"></app-validation-messages>
         </div>
         <div class="form-group">
-            <label class="form-label" for="date-input">Data utworzenia</label>
+            <label class="form-label" for="date-input">{{ 'Creation date' | translate }}</label>
             <input 
                 id="date-input" 
                 name="createdAt"
@@ -26,15 +25,15 @@
             <app-validation-messages *ngIf="form.submitted" [control]="createdAt"></app-validation-messages>
         </div>
         <div class="form-group">
-            <label class="form-label" for="author-input">Autor</label>
+            <label class="form-label" for="author-input">{{ 'Author' | translate }}</label>
             <select id="author-input" name="author" [ngModel]="users[0]" required #author="ngModel">
                 <option *ngFor="let user of users" [value]="user">{{ user }}</option>
             </select>
             <app-validation-messages *ngIf="form.submitted" [control]="author"></app-validation-messages>
         </div>
         <button type="submit">Zatwierdź</button>
-        <p *ngIf="form.invalid && form.touched" class="validation-message">Nieprawidłowo wypełniony formularz</p>
-        <p *ngIf="form.hasError('unknownValidationError')" class="validation-message">Nieznany błąd walidacji formularza</p>
+        <p *ngIf="form.invalid && form.touched" class="validation-message">{{ 'Invalid form content' | translate }}</p>
+        <p *ngIf="form.hasError('unknownValidationError')" class="validation-message">{{ 'Unknown form validation error' | translate }}</p>
     </form>
 </div>
 
@@ -42,13 +41,12 @@
 <div *ngIf="!this.usersService.isAdmin()" class="answer-component">
     <form (ngSubmit)="onSubmit(form)" #form="ngForm">
         <div class="form-group">
-            <label class="form-label" for="content-input">Twoja Odpowiedź</label>
+            <label class="form-label" for="content-input">{{ 'Your answer' | translate }}</label>
             <textarea 
                 name="content" 
                 id="content-input" 
                 required 
                 minlength="10"
-                placeholder="Tutaj wpisz swoją odpowiedź na pytanie" 
                 autofocus
                 [ngModel]="answer.content"
                 #content="ngModel">
@@ -56,7 +54,7 @@
             <app-validation-messages *ngIf="form.submitted" [control]="content"></app-validation-messages>
         </div>
         <button type="submit">Zatwierdź</button>
-        <p *ngIf="form.invalid && form.touched" class="validation-message">Nieprawidłowo wypełniony formularz</p>
-        <p *ngIf="form.hasError('unknownValidationError')" class="validation-message">Nieznany błąd walidacji formularza</p>
+        <p *ngIf="form.invalid && form.touched" class="validation-message">{{ 'Invalid form content' | translate }}</p>
+        <p *ngIf="form.hasError('unknownValidationError')" class="validation-message">{{ 'Unknown form validation error' | translate }}</p>
     </form>
 </div>

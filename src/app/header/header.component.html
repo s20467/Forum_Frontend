@@ -3,10 +3,14 @@
         <h1 id="app-logo-title">Forum</h1>
         <nav class="standard-header-nav">
             <ul class="standard-nav-menu">
-                <li><a [routerLink]="['/questions']">Strona główna</a></li>
-                <li><a [routerLink]="['/users']">Użytkownicy</a></li>
-                <li *ngIf="!isLoggedIn"><a [routerLink]="['/login']">Zaloguj się</a></li>
-                <li *ngIf="isLoggedIn"><a (click)="this.usersService.logout()">Wyloguj się</a></li>
+                <li><a [routerLink]="['/questions']">{{ 'Home page' | translate }}</a></li>
+                <li><a [routerLink]="['/users']">{{ 'Users' | translate }}</a></li>
+                <li *ngIf="!isLoggedIn"><a [routerLink]="['/login']">{{ 'Login' | translate }}</a></li>
+                <li *ngIf="isLoggedIn"><a (click)="this.usersService.logout()">{{ 'Logout' | translate }}</a></li>
+                <select class="lang-select" (change)="changeLang($event.target.value)">
+                    <option value="en" [selected]="lang == 'en'">English</option>
+                    <option value="pl" [selected]="lang == 'pl'">Polski</option>
+                </select>
             </ul>
         </nav>
         <button (click)="toggleOpen()" class="header-nav-button transparent-button">
@@ -18,11 +22,15 @@
         </button>
     </div>
     <nav *ngIf="isMenuOpen" class="responsive-header-nav">
-        <ul class="responsive-nav-menu" (click)="toggleOpen()">
-            <li><a [routerLink]="['/questions']">Strona główna</a></li>
-            <li><a [routerLink]="['/users']">Użytkownicy</a></li>
-            <li *ngIf="!isLoggedIn"><a [routerLink]="['/login']">Zaloguj się</a></li>
-            <li *ngIf="isLoggedIn"><a (click)="this.usersService.logout()">Wyloguj się</a></li>
+        <ul class="responsive-nav-menu">
+            <li (click)="toggleOpen()"><a [routerLink]="['/questions']">{{ 'Home page' | translate }}</a></li>
+            <li (click)="toggleOpen()"><a [routerLink]="['/users']">{{ 'Users' | translate }}</a></li>
+            <li (click)="toggleOpen()" *ngIf="!isLoggedIn"><a [routerLink]="['/login']">{{ 'Login' | translate }}</a></li>
+            <li (click)="toggleOpen()" *ngIf="isLoggedIn"><a (click)="this.usersService.logout()">{{ 'Logout' | translate }}</a></li>
+            <select class="lang-select" (change)="changeLang($event.target.value)">
+                <option value="en" [selected]="lang == 'en'">English</option>
+                <option value="pl" [selected]="lang == 'pl'">Polski</option>
+            </select>
         </ul>
     </nav>
 </header>

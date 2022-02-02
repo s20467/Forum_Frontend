@@ -1,19 +1,19 @@
 <div class="container">
-    <h2 class="form-header">Zaloguj się</h2>
+    <h2 class="form-header">{{ 'Login' | translate }}</h2>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" #form="ngForm">
         <div class="form-group">
-            <label class="form-label" for="username-input">Nazwa Użytkownika</label>
+            <label class="form-label" for="username-input">{{ 'Username' | translate }}</label>
             <input id="username-input" type="text" formControlName="username" autofocus>
             <app-validation-messages *ngIf="form.submitted" [control]="loginForm.get('username')"></app-validation-messages>
         </div>
         <div class="form-group">
-            <label class="form-label" for="password-input">Hasło</label>
+            <label class="form-label" for="password-input">{{ 'Password' | translate }}</label>
             <input id="password-input" type="password" formControlName="password">
             <app-validation-messages *ngIf="form.submitted" [control]="loginForm.get('password')"></app-validation-messages>
         </div>
         <button type="Submit">Zaloguj</button>
-        <p *ngIf="form.submitted && form.invalid" class="validation-message">Nieprawidłowo wypełniony formularz</p>
-        <p *ngIf="form.hasError('unknownValidationError')" class="validation-message">Nieznany błąd walidacji formularza</p>
+        <p *ngIf="form.submitted && form.invalid" class="validation-message">{{ 'Invalid form content' | translate }}</p>
+        <p *ngIf="form.hasError('unknownValidationError')" class="validation-message">{{ 'Unknown form validation error' | translate }}</p>
     </form>
-    <p>Nie posiadasz konta? <a class="link" [routerLink]="['/users', 'register']">Zarejestruj się</a></p>
+    <p>{{ "You do not have an account" | translate }}? <a class="link" [routerLink]="['/users', 'register']">{{ 'Register' | translate }}</a></p>
 </div>

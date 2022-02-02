@@ -1,7 +1,7 @@
 <a [routerLink]="['/questions', question.id, 'answers']">
     <div class="question-component" [class.closed]="question?.closedAt != null">
         <div *ngIf="question?.closedAt != null" class="question-closed-info-box">
-            <span class="question-closed-info">wątek zamknięty</span>
+            <span class="question-closed-info">{{ 'Question closed' | translate }}</span>
             <app-lock-button [is-locked]="true"></app-lock-button>
         </div>
         <div class="votes-answers-numbers">
